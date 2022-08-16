@@ -17452,6 +17452,48 @@
      
 }
 
+    namespace Flugg\Responder\Facades { 
+            /**
+     * A facade class responsible for giving easy access to the responder service.
+     *
+     * @package flugger/laravel-responder
+     * @author Alexander Tømmerås <flugged@gmail.com>
+     * @license The MIT License
+     * @see \Flugg\Responder\Responder
+     */ 
+        class Responder {
+                    /**
+         * Build a successful response.
+         *
+         * @param mixed $data
+         * @param callable|string|\Flugg\Responder\Transformers\Transformer|null $transformer
+         * @param string|null $resourceKey
+         * @return \Flugg\Responder\Http\Responses\SuccessResponseBuilder 
+         * @static 
+         */ 
+        public static function success($data = null, $transformer = null, $resourceKey = null)
+        {
+                        /** @var \Flugg\Responder\Responder $instance */
+                        return $instance->success($data, $transformer, $resourceKey);
+        }
+                    /**
+         * Build an error response.
+         *
+         * @param mixed|null $errorCode
+         * @param string|null $message
+         * @return \Flugg\Responder\Http\Responses\ErrorResponseBuilder 
+         * @static 
+         */ 
+        public static function error($errorCode = null, $message = null)
+        {
+                        /** @var \Flugg\Responder\Responder $instance */
+                        return $instance->error($errorCode, $message);
+        }
+         
+    }
+     
+}
+
     namespace Spatie\LaravelIgnition\Facades { 
             /**
      * 
@@ -21744,6 +21786,7 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
+            class Responder extends \Flugg\Responder\Facades\Responder {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }
