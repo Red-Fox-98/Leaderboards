@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Database\Factories\RoleFactory;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
@@ -20,6 +21,6 @@ class DatabaseSeeder extends Seeder
         Role::factory()->create(['name' => 'teacher']);
         Role::factory()->create(['name' => 'student']);
 
-        Role::factory()->count(10)->create();
+        User::factory()->count(100)->create();
     }
 }
