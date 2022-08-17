@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\File;
 use App\Models\User;
 use Database\Factories\RoleFactory;
 use Illuminate\Database\Seeder;
@@ -22,5 +23,7 @@ class DatabaseSeeder extends Seeder
         Role::factory()->create(['name' => 'student']);
 
         User::factory()->count(100)->create();
+
+        File::factory()->count(100)->create();
     }
 }
