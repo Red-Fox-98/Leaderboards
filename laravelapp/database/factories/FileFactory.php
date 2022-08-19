@@ -18,11 +18,11 @@ class FileFactory extends Factory
      */
     public function definition()
     {
-        $file = UploadedFile::fake()->image("1",30,30);
+        $file = UploadedFile::fake()->image("i.png",30,30);
         $path = \Storage::disk('public')->putFile('/images', $file);
         return [
             'user_id' => User::query()->inRandomOrder()->first()->id,
-            'model_id' => rand(1, 100),
+//            'model_id' => rand(1, 100),
             'path' => $path,
             'name' => $this->faker->word,
             'type' => $this->faker->word,
