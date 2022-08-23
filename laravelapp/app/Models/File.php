@@ -12,12 +12,15 @@ class File extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id',
         'user_id',
+        'model_id',
+        'model_type',
         'name',
-        'path',
         'type',
         'extension',
         'size',
         'published_at',
+        'path',
     ];
 }

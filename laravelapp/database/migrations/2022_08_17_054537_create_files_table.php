@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
-//            $table->string('model_type');
-//            $table->bigInteger('model_id')->unsigned();
-            $table->string('name');
-            $table->string('type');
-            $table->string('extension');
-            $table->bigInteger('size');
-            $table->timestamp('published_at');
-            $table->string('path');
+            $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('model_id')->nullable();
+            $table->string('model_type')->nullable();
+            $table->string('name')->nullable();
+            $table->string('path')->nullable();
+            $table->string('type')->nullable();
+            $table->string('extension')->nullable();
+            $table->bigInteger('size')->nullable();
+            $table->timestamp('published_at')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users');
+//            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

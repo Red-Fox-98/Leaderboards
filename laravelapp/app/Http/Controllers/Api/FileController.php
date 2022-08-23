@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FileUploadRequest;
 use App\Models\File;
-use App\Models\User;
-use Carbon\Carbon;
-use Validator;
-use Illuminate\Http\Request;
+use App\Transformers\FileTransformer;
 
 class FileController extends Controller
 {
@@ -34,7 +32,7 @@ class FileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,7 +43,7 @@ class FileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -56,7 +54,7 @@ class FileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -67,8 +65,8 @@ class FileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -79,7 +77,7 @@ class FileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -88,36 +86,22 @@ class FileController extends Controller
     }
 
     /**
-     *  @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\FileUploadRequest $request
      */
-    public function upload(Request $request){
-        $validator = Validator::make($request->all(), [
-                'file' => 'required|mimes:png,jpg,jpeg,gif|max:2305',]);
+    public function upload(FileUploadRequest $request)
+    {
+        $validator = $request->all();
 
-        if($validator->fails()){
-            return response()->json(['error'=>$validator->errors()], 401);
-        }
-
-        if($file = $request->file('file')){
+        if ($file = $request->file('file')) {
             $path = $request->file('file')->store('public/files');
             $name = $file->getClientOriginalName();
 
-            $save = new File();
-            $save->user_id = User::query()->inRandomOrder()->first()->id;
-            $save->name = $name;
-            $save->path = $path;
-            $save->type = 'image';
-            $save->extension = 'png';
-            $save->size = 404;
-            $save->published_at = Carbon::now();
-            $save->save();
-
-
-            return response()->json([
-                "success" => true,
-                "message" => "File successfully uploaded",
-                "file" => $file,
+            $data = File::query()->create([
+                'name' => $name,
+                'path' => $path,
             ]);
+
+            return responder()->success($data, new FileTransformer())->respond();
         }
     }
 }
