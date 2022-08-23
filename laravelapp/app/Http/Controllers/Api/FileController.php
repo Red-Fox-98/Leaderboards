@@ -90,7 +90,7 @@ class FileController extends Controller
      */
     public function upload(FileUploadRequest $request)
     {
-        $validator = $request->all();
+        $validator = $request->validated();
 
         if ($file = $request->file('file')) {
             $path = $request->file('file')->store('public/files');

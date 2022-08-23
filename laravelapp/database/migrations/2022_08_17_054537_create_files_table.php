@@ -19,13 +19,11 @@ return new class extends Migration
             $table->bigInteger('model_id')->nullable();
             $table->string('model_type')->nullable();
             $table->string('name')->nullable();
-            $table->string('path')->nullable();
+            $table->string('path');
             $table->string('type')->nullable();
             $table->string('extension')->nullable();
             $table->bigInteger('size')->nullable();
             $table->timestamp('published_at')->nullable();
-
-//            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
