@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
 
         File::factory()->count(100)->create();
 
-        $this->call(UsersTableSeeder::class);
+        User::factory()->create(
+            [
+                'name' => 'Red Fox',
+                'email' => 'red_fox@mail.ru',
+                'password' => bcrypt('123abc321')]);
     }
 }

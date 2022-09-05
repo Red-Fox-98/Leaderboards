@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\Token\LoginRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Requests\AuthControllerTokenRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function token(AuthControllerTokenRequest $request){
+    public function login(LoginRequest $request){
         $data = $request->validated();
 
         /** @var User $user */

@@ -19,7 +19,7 @@ Route::apiResource('/users', 'App\Http\Controllers\Api\UserController');
 
 Route::post('/file/upload', ['App\Http\Controllers\Api\FileController', 'upload']);
 
-Route::post('/token',[AuthController::class, 'token']);
+Route::post('/token',[AuthController::class, 'login']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/tokenVerification', function () {
