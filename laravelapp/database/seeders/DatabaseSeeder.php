@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->count(100)->create();
 
         File::factory()->count(100)->create();
+
+        $this->call(UsersTableSeeder::class);
     }
 }

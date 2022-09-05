@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('/users', 'App\Http\Controllers\Api\UserController');
 
 Route::post('/file/upload', ['App\Http\Controllers\Api\FileController', 'upload']);
+
+Route::post('/token',[AuthController::class, 'token']);
+
+Route::group(['middleware' => 'auth:sanctum'], function(){
+    Route::get('/tokenVerification', function () {
+        return 'ok';
+    });
+});
