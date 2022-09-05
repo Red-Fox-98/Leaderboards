@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Red Fox',
                 'email' => 'red_fox@mail.ru',
-                'password' => bcrypt('123abc321')]);
+                'password' => bcrypt('123abc321')
+            ]
+        );
     }
 }
