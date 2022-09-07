@@ -3,6 +3,9 @@
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\FileController;
+use App\Http\Controllers\Api\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('/users', 'App\Http\Controllers\Api\UserController');
+Route::apiResource('/users', UserController::class);
 
-Route::post('/file/upload', ['App\Http\Controllers\Api\FileController', 'upload']);
+Route::post('/file/upload', [FileController::class, 'upload']);
 
 Route::post('/token',[AuthController::class, 'login']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/tokenVerification', function () {
+        dd($jopa);
         return 'ok';
     });
+
+    Route::post('/profile', [ProfileController::class, 'create']);
 });
