@@ -3,98 +3,32 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\Profile\CreateRequest;
+use App\Models\Profile;
 use App\Models\User;
 use App\Transformers\ProfileTransformer;
 use Illuminate\Http\Request;
-use App\Http\Requests\ProfileCreateRequest;
-use App\Models\Profile;
 
 
 class ProfileController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
-     * @param \App\Http\Requests\ProfileCreateRequest $request
+     * @param \App\Http\Requests\User\Profile\CreateRequest $request
      */
-    public function create(ProfileCreateRequest $request)
+    public function create(CreateRequest $request)
     {
         /** @var User $user */
         $user = auth()->user();
-        $full_name = $request->validated();
+        $data = $request->validated();
 
-        $data = Profile::query()->create([
-            'user_id' => $user->getAuthIdentifier(),
-            'last_name' => $full_name['last_name'],
-            'name' => $full_name['name'],
-            'middle_name' => $full_name['middle_name'],
+        $profile = Profile::query()->create([
+            'user_id' => $user->id,
+            'last_name' => $data['last_name'],
+            'name' => $data['name'],
+            'middle_name' => $data['middle_name'],
         ]);
 
-        return responder()->success($data, new ProfileTransformer())->respond();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return responder()->success($profile, new ProfileTransformer())->respond();
     }
 }

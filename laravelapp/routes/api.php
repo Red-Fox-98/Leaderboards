@@ -18,7 +18,8 @@ use App\Http\Controllers\Api\ProfileController;
 |
 */
 
-Route::apiResource('/users', UserController::class);
+Route::apiResource('/users', UserController::class)
+    ->only('index');
 
 Route::post('/file/upload', [FileController::class, 'upload']);
 
@@ -29,5 +30,6 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
         return 'ok';
     });
 
-    Route::post('/profile', [ProfileController::class, 'create']);
+    Route::apiResource('/profile', ProfileController::class)
+        ->only('create');
 });

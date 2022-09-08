@@ -5,6 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property string $last_name
+ * @property string $name
+ * @property string $middle_name
+ */
+
 class Profile extends Model
 {
     use HasFactory;

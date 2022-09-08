@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('middle_name')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

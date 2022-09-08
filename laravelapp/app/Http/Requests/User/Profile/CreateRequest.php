@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User\Profile;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileCreateRequest extends FormRequest
+class CreateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
