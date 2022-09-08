@@ -20,14 +20,20 @@ class ProfileController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        $data = $request->validated();
+        $profile_data = $request->validated();
+        $data = Profile::where('user_id', $user->id)->first();
 
-        $profile = Profile::query()->create([
-            'user_id' => $user->id,
-            'last_name' => $data['last_name'],
-            'name' => $data['name'],
-            'middle_name' => $data['middle_name'],
-        ]);
+        if(!empty($data)){
+            $data->update($request->all());
+            $profile = $data;
+        }else{
+            $profile = Profile::query()->create([
+                'user_id' => $user->id,
+                'last_name' => $profile_data['last_name'],
+                'name' => $profile_data['name'],
+                'middle_name' => $profile_data['middle_name'],
+            ]);
+        }
 
         return responder()->success($profile, new ProfileTransformer())->respond();
     }

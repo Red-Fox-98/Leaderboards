@@ -32,5 +32,12 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('123abc321')
             ]
         );
+
+        User::factory()->create(
+            [
+                'email' => 'fox@mail.ru',
+                'password' => bcrypt('321abc123')
+            ]
+        );
     }
 }
