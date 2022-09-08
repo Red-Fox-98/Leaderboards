@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('name')->nullable();
             $table->string('last_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('middle_name')->nullable();
 
-//            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

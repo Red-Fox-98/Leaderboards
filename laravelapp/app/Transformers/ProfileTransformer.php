@@ -10,7 +10,7 @@ class ProfileTransformer extends Transformer
     public function transform(Profile $profile): array
     {
         return [
-//            'user_id' => $profile->user_id,
+            'user_id' => $profile->user_id,
             'last_name' => $profile->last_name,
             'name' => $profile->name,
             'middle_name' => $profile->middle_name,

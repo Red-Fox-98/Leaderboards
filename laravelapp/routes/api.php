@@ -26,7 +26,6 @@ Route::post('/token',[AuthController::class, 'login']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/tokenVerification', function () {
-        dd($jopa);
         return 'ok';
     });
 

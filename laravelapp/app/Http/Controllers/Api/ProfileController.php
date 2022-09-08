@@ -26,20 +26,20 @@ class ProfileController extends Controller
      * Show the form for creating a new resource.
      * @param \App\Http\Requests\ProfileCreateRequest $request
      */
-    public function create()
+    public function create(ProfileCreateRequest $request)
     {
-        dd($pred);
-
         /** @var User $user */
         $user = auth()->user();
+        $full_name = $request->validated();
 
-        Profile::query()->create([
-            'last_name' => 'sdfsdf',
-            'name' => 'sdfsdf',
-            'middle_name' => 'sdfsdf',
+        $data = Profile::query()->create([
+            'user_id' => $user->getAuthIdentifier(),
+            'last_name' => $full_name['last_name'],
+            'name' => $full_name['name'],
+            'middle_name' => $full_name['middle_name'],
         ]);
 
-//        return responder()->success($data, new ProfileTransformer())->respond();
+        return responder()->success($data, new ProfileTransformer())->respond();
     }
 
     /**
