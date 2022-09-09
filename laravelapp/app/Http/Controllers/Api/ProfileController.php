@@ -7,7 +7,6 @@ use App\Http\Requests\User\Profile\CreateRequest;
 use App\Models\Profile;
 use App\Models\User;
 use App\Transformers\ProfileTransformer;
-use Illuminate\Http\Request;
 
 
 class ProfileController extends Controller
@@ -18,20 +17,20 @@ class ProfileController extends Controller
      */
     public function create(CreateRequest $request)
     {
+        dd('dfghjkl');
         /** @var User $user */
         $user = auth()->user();
-        $profile_data = $request->validated();
-        $data = Profile::where('user_id', $user->id)->first();
+        $profileData = $request->validated();
+        $profile = Profile::where('user_id', $user->id)->first();
 
-        if(!empty($data)){
-            $data->update($request->all());
-            $profile = $data;
+        if($profile){
+            $profile->update($request->all());
         }else{
             $profile = Profile::query()->create([
                 'user_id' => $user->id,
-                'last_name' => $profile_data['last_name'],
-                'name' => $profile_data['name'],
-                'middle_name' => $profile_data['middle_name'],
+                'last_name' => $profileData['last_name'],
+                'name' => $profileData['name'],
+                'middle_name' => $profileData['middle_name'],
             ]);
         }
 

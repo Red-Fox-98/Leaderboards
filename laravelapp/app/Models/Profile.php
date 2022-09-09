@@ -26,4 +26,8 @@ class Profile extends Model
         'name',
         'middle_name',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
