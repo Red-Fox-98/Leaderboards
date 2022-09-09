@@ -17,14 +17,12 @@ class FileController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        $file = $request->validated();
+        $data = $request->validated();
 
         if ($file = $request->file('file')) {
 
             $data = File::query()->create([
                 'user_id' => $user->id,
-                'model_id' => User::find($user->id)->profile->id,
-                'model_type' => Profile::class,
                 'name' => $file->getClientOriginalName(),
                 'path' => $request->file('file')->store('public/files'),
                 'size' => $file->getSize(),

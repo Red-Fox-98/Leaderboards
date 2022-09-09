@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Profile\CreateRequest;
+use App\Models\File;
 use App\Models\Profile;
 use App\Models\User;
 use App\Transformers\ProfileTransformer;
@@ -21,10 +22,11 @@ class ProfileController extends Controller
         $user = auth()->user();
         $profileData = $request->validated();
         $profile = User::find($user->id)->profile;
+        $file = File::where('id', $profileData['file_id'])->first();
 
-        if($profile){
+        if ($profile) {
             $profile->update($request->all());
-        }else{
+        } else {
             $profile = Profile::query()->create([
                 'user_id' => $user->id,
                 'last_name' => $profileData['last_name'],
@@ -32,6 +34,13 @@ class ProfileController extends Controller
                 'middle_name' => $profileData['middle_name'],
             ]);
         }
+        
+        $file->update(
+            [
+                'model_id' => $profile['id'],
+                'model_type' => Profile::class
+            ]
+        );
 
         return responder()->success($profile, new ProfileTransformer())->respond();
     }
