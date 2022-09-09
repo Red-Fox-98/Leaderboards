@@ -32,4 +32,6 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     Route::apiResource('/profile', ProfileController::class)
         ->only('create');
+
+    Route::post('/file/upload', [FileController::class, 'upload']);
 });

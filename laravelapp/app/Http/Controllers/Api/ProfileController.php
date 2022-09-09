@@ -17,11 +17,10 @@ class ProfileController extends Controller
      */
     public function create(CreateRequest $request)
     {
-        dd('dfghjkl');
         /** @var User $user */
         $user = auth()->user();
         $profileData = $request->validated();
-        $profile = Profile::where('user_id', $user->id)->first();
+        $profile = User::find($user->id)->profile;
 
         if($profile){
             $profile->update($request->all());
