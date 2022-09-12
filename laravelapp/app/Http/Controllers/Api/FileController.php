@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FileUploadRequest;
+use App\Transformers\FileTransformer;
 use App\Models\File;
-use App\Models\Profile;
 use App\Models\User;
 
 class FileController extends Controller
@@ -28,7 +28,7 @@ class FileController extends Controller
                 'size' => $file->getSize(),
             ]);
 
-            return $data;
+            return responder()->success($data, new FileTransformer())->respond();
         }
     }
 }
