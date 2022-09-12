@@ -21,27 +21,26 @@ class ProfileController extends Controller
         /** @var User $user */
         $user = auth()->user();
         $profileData = $request->validated();
-        $profile = User::find($user->id)->profile;
         $file = File::where('id', $profileData['file_id'])->first();
 
-        if ($profile) {
-            $profile->update($request->all());
+        if ($user->profile) {
+            $user->profile->update($request->validated());
         } else {
-            $profile = Profile::query()->create([
+            $user->profile = Profile::query()->create([
                 'user_id' => $user->id,
                 'last_name' => $profileData['last_name'],
                 'name' => $profileData['name'],
                 'middle_name' => $profileData['middle_name'],
             ]);
         }
-        
+
         $file->update(
             [
-                'model_id' => $profile['id'],
+                'model_id' => $user->profile['id'],
                 'model_type' => Profile::class
             ]
         );
 
-        return responder()->success($profile, new ProfileTransformer())->respond();
+        return responder()->success($user->profile, new ProfileTransformer())->respond();
     }
 }

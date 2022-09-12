@@ -17,7 +17,7 @@ class CreateRequest extends FormRequest
             'last_name' => 'required|string',
             'name' => 'required|string',
             'middle_name' => 'required|string',
-            'file_id' => 'required',
+            'file_id' => 'nullable',
         ];
     }
 }

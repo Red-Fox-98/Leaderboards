@@ -21,8 +21,6 @@ use App\Http\Controllers\Api\ProfileController;
 Route::apiResource('/users', UserController::class)
     ->only('index');
 
-Route::post('/file/upload', [FileController::class, 'upload']);
-
 Route::post('/token',[AuthController::class, 'login']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
