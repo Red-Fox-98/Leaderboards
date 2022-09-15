@@ -10,6 +10,7 @@ class FileTransformer extends Transformer
     public function transform(File $file): array
     {
         return [
+            'id' => $file->id,
             'name' => $file->name,
             'path' => $file->path,
         ];

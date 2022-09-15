@@ -29,6 +29,13 @@
       'Transformer' => 'Flugg\\Responder\\Facades\\Transformer',
     ),
   ),
+  'jason-guru/laravel-make-repository' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'JasonGuru\\LaravelMakeRepository\\RepositoryServiceProvider',
+    ),
+  ),
   'laravel/sail' => 
   array (
     'providers' => 

@@ -176,32 +176,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/file/upload' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'generated::p1n7RO75FuJ6nfLa',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
       '/api/token' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'generated::8L1XW1muNMOwxbNw',
+            '_route' => 'generated::A1lg6ax73FwRPYDG',
           ),
           1 => NULL,
           2 => 
@@ -220,7 +201,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::npyWAcy9VH81cVLO',
+            '_route' => 'generated::HHHAi3mfyYrxPaRc',
           ),
           1 => NULL,
           2 => 
@@ -254,13 +235,32 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/api/file/upload' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'generated::HVcxzukfUp8cycnI',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'generated::sk9odnOUhi285svg',
+            '_route' => 'generated::kJZxk0NdyuEHq5Q7',
           ),
           1 => NULL,
           2 => 
@@ -297,7 +297,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::me78ZiQXYiKf0ftu',
+            '_route' => 'generated::4phBtEx3w0N36DON',
           ),
           1 => NULL,
           2 => 
@@ -352,7 +352,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::P7HEs2nIsNiTfxen',
+            '_route' => 'generated::yiakXPmWm2xGgFYy',
           ),
           1 => NULL,
           2 => 
@@ -443,7 +443,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::zbfsTLkLgHuWdGNT',
+            '_route' => 'generated::q19wQMdhuT11bTIe',
           ),
           1 => NULL,
           2 => 
@@ -532,10 +532,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/admin/profile' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.profile.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
     ),
     2 => 
     array (
-      0 => '{^(?|/_debugbar/c(?|lockwork/([^/]++)(*:39)|ache/([^/]++)(?:/([^/]++))?(*:73))|/password/reset/([^/]++)(*:105)|/list/users/([^/]++)(?|(*:136)|/edit(*:149)|(*:157)))/?$}sDu',
+      0 => '{^(?|/_debugbar/c(?|lockwork/([^/]++)(*:39)|ache/([^/]++)(?:/([^/]++))?(*:73))|/password/reset/([^/]++)(*:105)|/list/users/([^/]++)(?|(*:136)|/edit(*:149)|(*:157))|/admin/profile/([^/]++)(?|/edit(*:197)|(*:205)))/?$}sDu',
     ),
     3 => 
     array (
@@ -686,6 +706,71 @@ app('router')->setCompiledRoutes(
           1 => 
           array (
             0 => 'user',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      197 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.profile.edit',
+          ),
+          1 => 
+          array (
+            0 => 'profile',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      205 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.profile.update',
+          ),
+          1 => 
+          array (
+            0 => 'profile',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.profile.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'profile',
           ),
           2 => 
           array (
@@ -1084,43 +1169,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::p1n7RO75FuJ6nfLa' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/file/upload',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\FileController@upload',
-        'controller' => 'App\\Http\\Controllers\\Api\\FileController@upload',
-        'namespace' => NULL,
-        'prefix' => 'api',
-        'where' => 
-        array (
-        ),
-        'as' => 'generated::p1n7RO75FuJ6nfLa',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'generated::8L1XW1muNMOwxbNw' => 
+    'generated::A1lg6ax73FwRPYDG' => 
     array (
       'methods' => 
       array (
@@ -1140,7 +1189,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::8L1XW1muNMOwxbNw',
+        'as' => 'generated::A1lg6ax73FwRPYDG',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1156,7 +1205,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::npyWAcy9VH81cVLO' => 
+    'generated::HHHAi3mfyYrxPaRc' => 
     array (
       'methods' => 
       array (
@@ -1173,13 +1222,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:258:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:40:"function () {
         return \'ok\';
-    }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000009300000000000000000";}";s:4:"hash";s:44:"Cp4kOSvjJaAUt2VTfM2DvbJVcKOxLDkhU3mv8H2YoeI=";}}',
+    }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000003950000000000000000";}";s:4:"hash";s:44:"SXZOrRMoYNS/b9d085O0dh+jLzTqYdWB2/bhXY18png=";}}',
         'namespace' => NULL,
         'prefix' => 'api',
         'where' => 
         array (
         ),
-        'as' => 'generated::npyWAcy9VH81cVLO',
+        'as' => 'generated::HHHAi3mfyYrxPaRc',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1233,7 +1282,44 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::sk9odnOUhi285svg' => 
+    'generated::HVcxzukfUp8cycnI' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'api/file/upload',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'api',
+          1 => 'auth:sanctum',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Api\\FileController@upload',
+        'controller' => 'App\\Http\\Controllers\\Api\\FileController@upload',
+        'namespace' => NULL,
+        'prefix' => 'api',
+        'where' => 
+        array (
+        ),
+        'as' => 'generated::HVcxzukfUp8cycnI',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generated::kJZxk0NdyuEHq5Q7' => 
     array (
       'methods' => 
       array (
@@ -1249,13 +1335,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:262:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:44:"function () {
     return \\view(\'welcome\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000009340000000000000000";}";s:4:"hash";s:44:"JYxw5WOvrDDIhAVqGh4pJD93ElVgDYqeZ9sAJzwE0i8=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000003970000000000000000";}";s:4:"hash";s:44:"4We5E8FL8sYwJK6fNjMn4UmJchIynMZMFMuHdBzQVwE=";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::sk9odnOUhi285svg',
+        'as' => 'generated::kJZxk0NdyuEHq5Q7',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1308,7 +1394,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::me78ZiQXYiKf0ftu' => 
+    'generated::4phBtEx3w0N36DON' => 
     array (
       'methods' => 
       array (
@@ -1328,7 +1414,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::me78ZiQXYiKf0ftu',
+        'as' => 'generated::4phBtEx3w0N36DON',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1417,7 +1503,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::P7HEs2nIsNiTfxen' => 
+    'generated::yiakXPmWm2xGgFYy' => 
     array (
       'methods' => 
       array (
@@ -1437,7 +1523,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::P7HEs2nIsNiTfxen',
+        'as' => 'generated::yiakXPmWm2xGgFYy',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1636,7 +1722,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::zbfsTLkLgHuWdGNT' => 
+    'generated::q19wQMdhuT11bTIe' => 
     array (
       'methods' => 
       array (
@@ -1656,7 +1742,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::zbfsTLkLgHuWdGNT',
+        'as' => 'generated::q19wQMdhuT11bTIe',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1948,6 +2034,153 @@ app('router')->setCompiledRoutes(
         'controller' => 'App\\Http\\Controllers\\Users\\UserController@destroy',
         'namespace' => 'App\\Http\\Controllers\\Users',
         'prefix' => 'list',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.profile.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/profile',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'as' => 'admin.profile.index',
+        'uses' => 'App\\Http\\Controllers\\Web\\Admin\\ProfileController@index',
+        'controller' => 'App\\Http\\Controllers\\Web\\Admin\\ProfileController@index',
+        'namespace' => 'App\\Http\\Controllers\\Web\\Admin',
+        'prefix' => 'admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.profile.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/profile/{profile}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'as' => 'admin.profile.edit',
+        'uses' => 'App\\Http\\Controllers\\Web\\Admin\\ProfileController@edit',
+        'controller' => 'App\\Http\\Controllers\\Web\\Admin\\ProfileController@edit',
+        'namespace' => 'App\\Http\\Controllers\\Web\\Admin',
+        'prefix' => 'admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.profile.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'admin/profile/{profile}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'as' => 'admin.profile.update',
+        'uses' => 'App\\Http\\Controllers\\Web\\Admin\\ProfileController@update',
+        'controller' => 'App\\Http\\Controllers\\Web\\Admin\\ProfileController@update',
+        'namespace' => 'App\\Http\\Controllers\\Web\\Admin',
+        'prefix' => 'admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.profile.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'admin/profile/{profile}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'as' => 'admin.profile.destroy',
+        'uses' => 'App\\Http\\Controllers\\Web\\Admin\\ProfileController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Web\\Admin\\ProfileController@destroy',
+        'namespace' => 'App\\Http\\Controllers\\Web\\Admin',
+        'prefix' => 'admin',
         'where' => 
         array (
         ),

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['namespace' => 'App\Http\Controllers\Users', 'prefix' => 'list'], function () {
     Route::resource('users', 'App\Http\Controllers\Users\UserController')->names('list.users');
+});
+
+$groupData = [
+    'namespace' => 'App\Http\Controllers\Web\Admin',
+    'prefix' => 'admin',
+];
+
+Route::group($groupData, function (){
+    $methods = ['index', 'edit', 'update', 'destroy'];
+    Route::resource('profile', ProfileController::class)
+        ->only($methods)
+        ->names('admin.profile');
 });

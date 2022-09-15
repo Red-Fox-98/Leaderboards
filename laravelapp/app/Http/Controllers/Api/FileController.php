@@ -20,7 +20,6 @@ class FileController extends Controller
         $data = $request->validated();
 
         if ($file = $request->file('file')) {
-
             $data = File::query()->create([
                 'user_id' => $user->id,
                 'name' => $file->getClientOriginalName(),
