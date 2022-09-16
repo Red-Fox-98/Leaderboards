@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Token\LoginRequest;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use TheSeer\Tokenizer\Token;
 
 class AuthController extends Controller
 {
@@ -17,8 +17,9 @@ class AuthController extends Controller
         /** @var User $user */
         $user = User::query()->where('email', $data['email'])->first();
 
+        /** @var $token */
         foreach ($user->tokens as $token) {
-            if($token['tokenable_id'] == $user['id']){
+            if($token->tokenable_id == $user->id){
                 $token->forceDelete();
             }
         }

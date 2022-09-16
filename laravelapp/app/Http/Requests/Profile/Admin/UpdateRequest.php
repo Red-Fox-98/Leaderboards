@@ -16,7 +16,7 @@ class UpdateRequest extends FormRequest
         return [
             'last_name' => 'required|string|min:3',
             'name' => 'required|string|min:2',
-            'middle_name' => 'nullable',
+            'middle_name' => 'nullable|string',
         ];
     }
 }

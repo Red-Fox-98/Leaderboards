@@ -5,57 +5,20 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Repositories\ProfileRepository;
 use App\Http\Requests\Profile\Admin\UpdateRequest;
+use Illuminate\Database\Eloquent\Model;
 
 class ProfileController extends Controller
 {
-    /** @var ProfileRepository */
-    private $profileRepository;
-
-    public function __construct()
+    public function __construct(private ProfileRepository $profileRepository)
     {
-        parent::__construct();
-        $this->profileRepository = app(ProfileRepository::class);
     }
 
     public function index()
     {
         $paginator = $this->profileRepository->getAllWithPaginate(25);
         return view('admin.profile.index', compact('paginator'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        dd(__METHOD__);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -109,8 +72,9 @@ class ProfileController extends Controller
     {
         $profile = Profile::find($id)->first();
         $user = User::where('id', $profile['user_id'])->first();
+        /** @var $token */
         foreach ($user->tokens as $token) {
-            if($token['tokenable_id'] == $user['id']){
+            if($token->tokenable_id == $user->id){
                 $token->forceDelete();
             }
         }

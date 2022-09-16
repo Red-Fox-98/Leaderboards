@@ -26,14 +26,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Users', 'prefix' => 'list'], 
     Route::resource('users', 'App\Http\Controllers\Users\UserController')->names('list.users');
 });
 
-$groupData = [
-    'namespace' => 'App\Http\Controllers\Web\Admin',
-    'prefix' => 'admin',
-];
-
-Route::group($groupData, function (){
-    $methods = ['index', 'edit', 'update', 'destroy'];
+Route::group(['namespace' => 'App\Http\Controllers\Web\Admin', 'prefix' => 'admin'], function (){
     Route::resource('profile', ProfileController::class)
-        ->only($methods)
+        ->only('index', 'edit', 'update', 'destroy')
         ->names('admin.profile');
 });
