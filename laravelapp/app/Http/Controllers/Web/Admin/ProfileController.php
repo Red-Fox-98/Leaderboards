@@ -78,7 +78,7 @@ class ProfileController extends Controller
                 $token->forceDelete();
             }
         }
-        $profile->forceDelete();$user->forceDelete();
+        $profile->forceDelete();
         if ($user) {
             return redirect()
                 ->route('admin.profile.index')
