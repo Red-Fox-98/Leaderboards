@@ -17,8 +17,12 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $paginator = $this->profileRepository->getAllWithPaginate(25);
-        return view('admin.profile.index', compact('paginator'));
+        $user = \Auth::user();
+        if($user->hasRole('admin')){
+            $paginator = $this->profileRepository->getAllWithPaginate(25);
+            return view('admin.profile.index', compact('paginator'));
+        }
+        return abort(404);
     }
 
     /**

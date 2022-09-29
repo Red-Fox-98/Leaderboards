@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Admin\ProfileController;
-
+use App\Http\Controllers\Web\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +31,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Web\Admin', 'prefix' => 'admi
         ->only('index', 'edit', 'update', 'destroy')
         ->names('admin.profile');
 });
+
+
+//Route::group(['namespace' => 'Auth'], function (){
+//    Route::get('index', [LoginController::class, 'index'])->name('index');
+//    Route::post('login', [LoginController::class, 'login'])->name('login');
+//});
