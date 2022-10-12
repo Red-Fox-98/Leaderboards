@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Admin\ProfileController;
 use App\Http\Controllers\Web\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,10 +27,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Users', 'prefix' => 'list'], 
     Route::resource('users', 'App\Http\Controllers\Users\UserController')->names('list.users');
 });
 
-Route::group(['middleware' => ['role:admin']], function (){
-    Route::group(['namespace' => 'App\Http\Controllers\Web\Admin', 'prefix' => 'admin'], function (){
-        Route::resource('profile', ProfileController::class)
-            ->only('index', 'edit', 'update', 'destroy')
-            ->names('admin.profile');
-    });
+Route::group(['middleware' => ['role:admin'], 'namespace' => 'App\Http\Controllers\Web\Admin', 'prefix' => 'admin'], function () {
+    Route::resource('profile', ProfileController::class)
+        ->only('index', 'edit', 'update', 'destroy')
+        ->names('admin.profile');
 });
