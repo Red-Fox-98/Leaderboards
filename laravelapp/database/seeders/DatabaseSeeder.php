@@ -5,9 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\File;
 use App\Models\User;
-use Database\Factories\RoleFactory;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
+use App\Models\Session;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         Role::factory()->create(['name' => 'admin']);
         Role::factory()->create(['name' => 'teacher']);
         Role::factory()->create(['name' => 'student']);
+
+        Session::factory()->count(50)->create();
 
         User::factory()->create(
             [
