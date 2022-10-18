@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
         Role::factory()->create(['name' => 'teacher']);
         Role::factory()->create(['name' => 'student']);
 
-        Session::factory()->count(50)->create();
-
         User::factory()->create(
             [
                 'email' => 'admin@test.com',

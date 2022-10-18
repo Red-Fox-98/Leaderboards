@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('player_id')->nullable();
-            $table->string('map_name')->default(null);
-            $table->unsignedBigInteger('score')->nullable();
+            $table->unsignedBigInteger('player_id');
+            $table->string('map_name');
+            $table->unsignedBigInteger('score');
             $table->time('session_duration');
             $table->timestamps();
+
+            $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
         });
     }
 
