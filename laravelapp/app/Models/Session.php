@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $player_id
  * @property string $map_name
  * @property int $score
+ * @property int $session_duration
  */
 
 class Session extends Model
@@ -21,5 +22,6 @@ class Session extends Model
         'player_id',
         'map_name',
         'score',
+        'session_duration',
     ];
 }
