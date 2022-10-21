@@ -21,7 +21,9 @@ use App\Http\Controllers\Api\ProfileController;
 Route::apiResource('/users', UserController::class)
     ->only('index');
 
-Route::post('/token',[AuthController::class, 'login']);
+Route::post('/login',[AuthController::class, 'login']);
+
+Route::post('/register',[AuthController::class, 'register']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/tokenVerification', function () {
