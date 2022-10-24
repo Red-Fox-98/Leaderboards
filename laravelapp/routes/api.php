@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\PlayerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,10 @@ Route::post('/login',[AuthController::class, 'login']);
 
 Route::post('/register',[AuthController::class, 'register']);
 
+
 Route::group(['middleware' => 'auth:sanctum'], function(){
+    Route::post('/player',[PlayerController::class, 'create']);
+
     Route::get('/tokenVerification', function () {
         return 'ok';
     });

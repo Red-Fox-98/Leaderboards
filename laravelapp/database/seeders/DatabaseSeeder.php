@@ -19,8 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Role::factory()->create(['name' => 'admin']);
-        Role::factory()->create(['name' => 'teacher']);
-        Role::factory()->create(['name' => 'student']);
+        Role::factory()->create(['name' => 'player']);
 
         User::factory()->create(
             [

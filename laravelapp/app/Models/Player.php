@@ -15,9 +15,15 @@ class Player extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id',
         'user_id',
         'nickname',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
