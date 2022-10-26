@@ -35,7 +35,7 @@ class PlayerController extends Controller
             'nickname' => $data['nickname'],
         ]);
 
-        return responder()->success($player)->respond();
+        return responder()->success(['id' => $player->id])->respond();
     }
 
     /**
