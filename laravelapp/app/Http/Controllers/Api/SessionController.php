@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Player;
 use App\Models\Session;
 use App\Models\User;
 use App\Http\Requests\Auth\Session\CreateRequest;
-use Carbon\Carbon;
 
 class SessionController extends Controller
 {
@@ -15,8 +13,12 @@ class SessionController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        $player = Player::query()->where('user_id', $user->id)->first();
+        $player = $user->player;
         $dataSession = $request->validated();
+
+        if (!$player) {
+            return responder()->error('401', 'Unauthorized')->respond(401);
+        }
 
         /** @var Session $session */
         $session = Session::query()->create([
