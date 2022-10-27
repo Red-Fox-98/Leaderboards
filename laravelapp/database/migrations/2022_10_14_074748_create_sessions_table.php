@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('player_id');
             $table->string('map_name');
             $table->unsignedBigInteger('score');
-            $table->time('session_duration');
+            $table->unsignedBigInteger('session_duration');
             $table->timestamps();
 
             $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');

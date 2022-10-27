@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Auth\Player;
+namespace App\Http\Requests\Auth\Session;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,7 +14,9 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nickname' => 'required|unique:players,nickname|string|max:255',
+            'map_name' => 'required|string',
+            'score' => 'required|int',
+            'session_duration' => 'required|int',
         ];
     }
 }

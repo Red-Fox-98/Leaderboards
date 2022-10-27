@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Player;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Requests\Auth\Player\CreateRequest;
 
 class PlayerController extends Controller
