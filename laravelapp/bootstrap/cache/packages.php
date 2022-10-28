@@ -103,4 +103,11 @@
       0 => 'Spatie\\Permission\\PermissionServiceProvider',
     ),
   ),
+  'tucker-eric/eloquentfilter' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'EloquentFilter\\ServiceProvider',
+    ),
+  ),
 );

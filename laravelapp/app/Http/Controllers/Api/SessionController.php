@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Session;
 use App\Models\User;
 use App\Http\Requests\Auth\Session\CreateRequest;
+use App\Http\Requests\Api\Session\IndexRequest;
+use App\Transformers\SessionTransformer;
 
 class SessionController extends Controller
 {
@@ -29,5 +31,11 @@ class SessionController extends Controller
         ]);
 
         return responder()->success(['id' => $session->id])->respond();
+    }
+
+    public function index(IndexRequest $request)
+    {
+        $sessions = Session::query()->filter($request->validated())->orderByDesc('score')->paginate(11);
+        return responder()->success($sessions, new SessionTransformer())->respond();
     }
 }
