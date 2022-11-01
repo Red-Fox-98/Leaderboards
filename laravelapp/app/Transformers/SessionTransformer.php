@@ -2,7 +2,6 @@
 
 namespace App\Transformers;
 
-use App\Models\Player;
 use App\Models\Session;
 use Flugg\Responder\Transformers\Transformer;
 

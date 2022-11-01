@@ -35,7 +35,7 @@ class SessionController extends Controller
 
     public function index(IndexRequest $request)
     {
-        $sessions = Session::query()->filter($request->validated())->orderByDesc('score')->paginate();
+        $sessions = Session::query()->filter($request->validated())->orderByDesc('score')->paginate()->unique('player_id');
         return responder()->success($sessions, new SessionTransformer())->respond();
     }
 }

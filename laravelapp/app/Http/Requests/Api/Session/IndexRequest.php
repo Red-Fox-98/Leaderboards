@@ -15,6 +15,7 @@ class IndexRequest extends FormRequest
     {
         return [
             'map_name' => 'string',
+            'player_id' => 'string',
         ];
     }
 }
