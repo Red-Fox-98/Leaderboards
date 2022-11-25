@@ -48,6 +48,6 @@ class SessionController extends Controller
             ->get()
             ->unique('player_id')
             ->take(25);
-        dd($sessions);
+        return responder()->success($sessions, new SessionTransformer())->respond();
     }
 }
