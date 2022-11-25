@@ -27,7 +27,9 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::post('/session', [SessionController::class, 'index']);
+Route::post('/sessionsAll', [SessionController::class, 'indexAll']);
+
+Route::post('/sessions', [SessionController::class, 'index']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/player/create', [PlayerController::class, 'create']);

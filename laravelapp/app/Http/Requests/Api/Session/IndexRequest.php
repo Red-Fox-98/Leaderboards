@@ -14,8 +14,7 @@ class IndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'map_name' => 'string',
-            'player_id' => 'string',
+            'map_name' => 'nullable|string',
         ];
     }
 }

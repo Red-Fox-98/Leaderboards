@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Requests\Auth\Session\CreateRequest;
 use App\Http\Requests\Api\Session\IndexRequest;
 use App\Transformers\SessionTransformer;
+use function GuzzleHttp\Promise\all;
 
 class SessionController extends Controller
 {
@@ -33,9 +34,20 @@ class SessionController extends Controller
         return responder()->success(['id' => $session->id])->respond();
     }
 
+    public function indexAll(IndexRequest $request)
+    {
+        $sessions = Session::query()->filter($request->validated())->orderByDesc('score')->paginate();
+        return responder()->success($sessions, new SessionTransformer())->respond();
+    }
+
     public function index(IndexRequest $request)
     {
-        $sessions = Session::query()->filter($request->validated())->orderByDesc('score')->paginate()->unique('player_id');
-        return responder()->success($sessions, new SessionTransformer())->respond();
+        $sessions = Session::query()
+            ->orderBy('score', 'DESC')
+            ->filter($request->validated())
+            ->get()
+            ->unique('player_id')
+            ->take(25);
+        dd($sessions);
     }
 }
