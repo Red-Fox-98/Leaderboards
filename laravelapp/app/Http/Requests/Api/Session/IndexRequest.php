@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\Session;
 
+use App\Models\Session;
 use Illuminate\Foundation\Http\FormRequest;
 
 class IndexRequest extends FormRequest

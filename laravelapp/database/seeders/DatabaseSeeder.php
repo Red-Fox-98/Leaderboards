@@ -27,5 +27,40 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('password')
             ]
         )->assignRole([Role::findByName('admin')]);
+
+        User::factory()->create(
+            [
+                'email' => 'red_____fox@mail.ru',
+                'password' => bcrypt('password')
+            ]
+        )->assignRole([Role::findByName('player')]);
+
+        User::factory()->create(
+            [
+                'email' => 'red____fox@mail.ru',
+                'password' => bcrypt('password')
+            ]
+        )->assignRole([Role::findByName('player')]);
+
+        User::factory()->create(
+            [
+                'email' => 'red___fox@mail.ru',
+                'password' => bcrypt('password')
+            ]
+        )->assignRole([Role::findByName('player')]);
+
+        User::factory()->create(
+            [
+                'email' => 'red__fox@mail.ru',
+                'password' => bcrypt('password')
+            ]
+        )->assignRole([Role::findByName('player')]);
+
+        User::factory()->create(
+            [
+                'email' => 'red_fox@mail.ru',
+                'password' => bcrypt('password')
+            ]
+        )->assignRole([Role::findByName('player')]);
     }
 }
