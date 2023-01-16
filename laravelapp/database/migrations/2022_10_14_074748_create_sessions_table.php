@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('map_name');
             $table->unsignedBigInteger('score');
             $table->unsignedBigInteger('session_duration');
-            $table->boolean('is_record');
+            $table->boolean('is_record')->default(false);
             $table->timestamps();
 
             $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');

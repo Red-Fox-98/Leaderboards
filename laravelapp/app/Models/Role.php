@@ -9,4 +9,6 @@ use \Spatie\Permission\Models\Role as SpatieRole;
 class Role extends SpatieRole
 {
     use HasFactory;
+    public const ADMIN = 'admin';
+    public const PLAYER = 'player';
 }

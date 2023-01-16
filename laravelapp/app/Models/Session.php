@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $map_name
  * @property int $score
  * @property int $session_duration
+ * @property boolean $is_record
  */
 
 class Session extends Model
@@ -24,6 +25,7 @@ class Session extends Model
         'map_name',
         'score',
         'session_duration',
+        'is_record'
     ];
 
     public function player(){

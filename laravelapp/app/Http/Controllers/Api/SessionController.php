@@ -17,29 +17,34 @@ class SessionController extends Controller
         /** @var User $user */
         $user = auth()->user();
         $player = $user->player;
-        $dataSession = $request->validated();
-        $maxRecord = Session::query()->where('map_name', $dataSession['map_name'])->orderByDesc('score')->where('player_id', $player->id)->first();
 
         if (!$player) {
             return responder()->error('401', 'Unauthorized')->respond(401);
         }
 
+        $currentSession = $request->validated();
+
+        $bestSession = Session::query()
+            ->where('map_name', $currentSession['map_name'])
+            ->where('player_id', $player->id)
+            ->where('is_record', true)
+            ->first();
+
         /** @var Session $session */
         $session = Session::query()->create([
             'player_id' => $player->id,
-            'map_name' => $dataSession['map_name'],
-            'score' => $dataSession['score'],
-            'session_duration' => $dataSession['session_duration'],
+            'map_name' => $currentSession['map_name'],
+            'score' => $currentSession['score'],
+            'session_duration' => $currentSession['session_duration'],
+            'is_record' => true,
         ]);
-        Session::query()->where('id', $session->id)->update(['is_record' => true]);
 
-        if ($maxRecord){
-            if ($session->score >= $maxRecord->score){
-                Session::query()->where('id', $maxRecord->id)->update(['is_record' => false]);
+        if ($bestSession){
+            if ($bestSession->score >= $session->score){
+                $session->update(['is_record' => false]);
             }
             else{
-                Session::query()->where('id', $session->id)->update(['is_record' => false]);
-                Session::query()->where('id', $maxRecord->id)->update(['is_record' => true]);
+                $bestSession->update(['is_record' => false]);
             }
         }
 
@@ -48,7 +53,10 @@ class SessionController extends Controller
 
     public function index(IndexRequest $request)
     {
-        $sessions = Session::query()->filter($request->validated())->orderByDesc('score')->paginate();
+        $sessions = Session::query()
+            ->filter($request->validated())
+            ->orderByDesc('score')
+            ->paginate();
         return responder()->success($sessions, new SessionTransformer())->respond();
     }
 
@@ -56,7 +64,7 @@ class SessionController extends Controller
     {
         $sessions = Session::query()
             ->filter($request->validated())
-            ->where('is_record' ,'1')
+            ->where('is_record' , true)
             ->orderByDesc('score')
             ->paginate();
 
