@@ -11,4 +11,8 @@ class SessionFilter extends ModelFilter
     {
         return $this->where('map_name', $mapName);
     }
+    public function isRecord(bool $isRecord)
+    {
+        return $this->where('is_record', $isRecord);
+    }
 }

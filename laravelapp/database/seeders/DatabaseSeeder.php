@@ -21,46 +21,43 @@ class DatabaseSeeder extends Seeder
         Role::factory()->create(['name' => 'admin']);
         Role::factory()->create(['name' => 'player']);
 
-        User::factory()->create(
-            [
-                'email' => 'admin@test.com',
-                'password' => bcrypt('password')
-            ]
-        )->assignRole(Role::ADMIN);
+        $this->call(UserSeeder::class);
 
-        User::factory()->create(
-            [
-                'email' => 'red_____fox@mail.ru',
-                'password' => bcrypt('password')
-            ]
-        )->assignRole(Role::PLAYER);
 
-        User::factory()->create(
-            [
-                'email' => 'red____fox@mail.ru',
-                'password' => bcrypt('password')
-            ]
-        )->assignRole(Role::PLAYER);
 
-        User::factory()->create(
-            [
-                'email' => 'red___fox@mail.ru',
-                'password' => bcrypt('password')
-            ]
-        )->assignRole(Role::PLAYER);
-
-        User::factory()->create(
-            [
-                'email' => 'red__fox@mail.ru',
-                'password' => bcrypt('password')
-            ]
-        )->assignRole(Role::PLAYER);
-
-        User::factory()->create(
-            [
-                'email' => 'red_fox@mail.ru',
-                'password' => bcrypt('password')
-            ]
-        )->assignRole(Role::PLAYER);
+//        User::factory()->create(
+//            [
+//                'email' => 'user1@mail.com',
+//                'password' => bcrypt('password')
+//            ]
+//        )->assignRole(Role::PLAYER);
+//
+//        User::factory()->create(
+//            [
+//                'email' => 'user2@mail.com',
+//                'password' => bcrypt('password')
+//            ]
+//        )->assignRole(Role::PLAYER);
+//
+//        User::factory()->create(
+//            [
+//                'email' => 'user3@mail.com',
+//                'password' => bcrypt('password')
+//            ]
+//        )->assignRole(Role::PLAYER);
+//
+//        User::factory()->create(
+//            [
+//                'email' => 'user4@mail.com',
+//                'password' => bcrypt('password')
+//            ]
+//        )->assignRole(Role::PLAYER);
+//
+//        User::factory()->create(
+//            [
+//                'email' => 'user5@mail.com',
+//                'password' => bcrypt('password')
+//            ]
+//        )->assignRole(Role::PLAYER);
     }
 }
