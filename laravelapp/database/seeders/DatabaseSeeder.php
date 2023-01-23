@@ -22,42 +22,5 @@ class DatabaseSeeder extends Seeder
         Role::factory()->create(['name' => 'player']);
 
         $this->call(UserSeeder::class);
-
-
-
-//        User::factory()->create(
-//            [
-//                'email' => 'user1@mail.com',
-//                'password' => bcrypt('password')
-//            ]
-//        )->assignRole(Role::PLAYER);
-//
-//        User::factory()->create(
-//            [
-//                'email' => 'user2@mail.com',
-//                'password' => bcrypt('password')
-//            ]
-//        )->assignRole(Role::PLAYER);
-//
-//        User::factory()->create(
-//            [
-//                'email' => 'user3@mail.com',
-//                'password' => bcrypt('password')
-//            ]
-//        )->assignRole(Role::PLAYER);
-//
-//        User::factory()->create(
-//            [
-//                'email' => 'user4@mail.com',
-//                'password' => bcrypt('password')
-//            ]
-//        )->assignRole(Role::PLAYER);
-//
-//        User::factory()->create(
-//            [
-//                'email' => 'user5@mail.com',
-//                'password' => bcrypt('password')
-//            ]
-//        )->assignRole(Role::PLAYER);
     }
 }
