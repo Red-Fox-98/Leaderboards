@@ -23,13 +23,12 @@ class SessionController extends Controller
         }
 
         $currentSession = $request->validated();
-        $bestSession = Session::query()->where('map_name', $currentSession['map_name'])->where('player_id', $player->id)->where('is_record', true)->first();
+        $bestSession = Session::query()->filter(['player_id' => $player->id, 'map_name' => $currentSession['map_name'], 'is_record' => true]);
 
-        if ($bestSession){
-            if ($bestSession->score >= $currentSession['score']){
+        if ($bestSession) {
+            if ($bestSession->score >= $currentSession['score']) {
                 $is_record = false;
-            }
-            else{
+            } else {
                 $bestSession->update(['is_record' => false]);
             }
         }
