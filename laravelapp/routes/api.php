@@ -23,18 +23,16 @@ use App\Http\Controllers\Api\SessionController;
 Route::apiResource('/users', UserController::class)
     ->only('index');
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('api.auth.login');
 
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register'])->name('api.auth.register');
 
 Route::apiResource('/sessions', SessionController::class)->only('index');
 
-Route::get('/records', [SessionController::class, 'listRecords']);
-
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::post('/player/create', [PlayerController::class, 'create']);
+    Route::post('/player/create', [PlayerController::class, 'create'])->name('api.player.create');
 
-    Route::post('/session/create', [SessionController::class, 'create']);
+    Route::post('/session/create', [SessionController::class, 'create'])->name('api.session.create');
 
     Route::get('/tokenVerification', function () {
         return 'ok';

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Faker\Generator;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -23,9 +24,9 @@ class UserSeeder extends Seeder
             ]
         )->assignRole(Role::ADMIN);
 
-        $users = User::factory()->times(5)->create(
-            ['password' => bcrypt('password')]
-        );
+        $users = User::factory()->times(5)->create([
+            'password' => bcrypt('password')
+            ]);
         foreach ($users as $user) {
             $user->assignRole(Role::PLAYER);
         }
