@@ -15,7 +15,6 @@ use Spatie\Permission\Traits\HasRoles;
 class Player extends Model
 {
     use HasFactory;
-    use HasRoles;
 
     public $timestamps = false;
 

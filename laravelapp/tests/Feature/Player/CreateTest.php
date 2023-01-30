@@ -29,5 +29,9 @@ class CreateTest extends TestCase
             'status', 'success',
             'data' => ['id'],
         ]);
+
+        $this->assertDatabaseHas('players', [
+            'nickname' => $data['nickname'],
+        ]);
     }
 }

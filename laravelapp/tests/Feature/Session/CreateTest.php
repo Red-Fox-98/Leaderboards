@@ -3,6 +3,7 @@
 namespace Tests\Feature\Session;
 
 use App\Models\Player;
+use App\Models\Session;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -11,6 +12,7 @@ use Tests\TestCase;
 class CreateTest extends TestCase
 {
     use WithFaker;
+
     public function testSessionCreationWasSuccessful()
     {
         $password = 'password';
@@ -38,5 +40,12 @@ class CreateTest extends TestCase
                 'status', 'success',
                 'data' => ['id'],
             ]);
+
+        $this->assertDatabaseHas('sessions', [
+            'player_id' => $player->id,
+            'map_name' => $data['map_name'],
+            'score' => $data['score'],
+            'session_duration' => $data['session_duration'],
+        ]);
     }
 }
