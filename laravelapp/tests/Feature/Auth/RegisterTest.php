@@ -18,8 +18,6 @@ class RegisterTest extends TestCase
             'password' => 'password',
         ];
 
-//        dd($data);
-
         $this->json('post', route('api.auth.register'), $data)
             ->assertOk()
             ->assertJsonStructure([
