@@ -20,9 +20,9 @@ class SessionFactory extends Factory
     public function definition()
     {
         /** @var Player $player */
-        $player = Player::query()->inRandomOrder()->first()->id;
+        $player = Player::query()->inRandomOrder()->first();
 
-        if ($player){
+        if (!$player){
             $player = Player::factory()->create();
             $player->user->assignRole(Role::PLAYER);
         }
