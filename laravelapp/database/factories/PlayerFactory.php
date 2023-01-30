@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class PlayerFactory extends Factory
     public function definition()
     {
         return [
-            'nickname' => $this->faker->word,
+            'nickname' => $this->faker->unique()->word,
+            'user_id' => User::factory(),
         ];
     }
 }

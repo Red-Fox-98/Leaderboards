@@ -18,15 +18,16 @@ class IndexTest extends TestCase
     public function testOutputOfSessionsWasSuccessful()
     {
         /** @var Session $sessions*/
-        $sessions = Session::factory()->times(100)->create();
-        $map_name = $sessions[0];
+        $mapName = 'SP';
+        $sessions = Session::factory()->times(3)->create(['map_name' => $mapName]);
 
         $data = [
-            'map_name' => $map_name['map_name'],
+            'map_name' => $mapName,
             'is_record' => true,
         ];
 
         $this->json('get', route('sessions.index'), $data)
+            ->assertOk()
             ->assertJsonStructure([
                 'status', 'success',
                 'data' => [

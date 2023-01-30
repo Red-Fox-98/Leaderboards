@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Player;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,18 +18,23 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create(
+        /** @var User $admin */
+        $admin = User::factory()->create(
             [
                 'email' => 'admin@test.com',
                 'password' => bcrypt('password')
             ]
-        )->assignRole(Role::ADMIN);
+        );
 
-        $users = User::factory()->times(5)->create([
-            'password' => bcrypt('password')
-            ]);
-        foreach ($users as $user) {
-            $user->assignRole(Role::PLAYER);
-        }
+        Player::factory()->create(['user_id' => $admin->id]);
+
+        $admin->assignRole(Role::ADMIN);
+
+        /** @var Player $player */
+        $player = User::factory()->create();
+
+        Player::factory()->create(['user_id' => $player->id]);
+        $player->assignRole(Role::PLAYER);
+
     }
 }

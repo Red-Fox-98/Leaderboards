@@ -28,8 +28,8 @@ class CreateTest extends TestCase
 
         $data = [
             'map_name' => $this->faker->word(),
-            'score' => $this->faker->biasedNumberBetween(0, 1000),
-            'session_duration' => $this->faker->biasedNumberBetween(0, 1800),
+            'score' => $this->faker->numberBetween(0, 1000),
+            'session_duration' => $this->faker->numberBetween(0, 1800),
         ];
 
         $this->actingAs($user)->json('post', route('api.session.create'), $data)

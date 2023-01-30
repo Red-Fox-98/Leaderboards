@@ -10,7 +10,7 @@ use Tests\TestCase;
 class CreateTest extends TestCase
 {
     use WithFaker;
-    public function testCreateViaPlayerEmailIsSuccessful()
+    public function testCreatePlayerIsSuccessful()
     {
         $password = 'password';
         /** @var User $user */

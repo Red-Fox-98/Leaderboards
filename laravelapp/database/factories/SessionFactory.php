@@ -20,9 +20,8 @@ class SessionFactory extends Factory
         return [
             'player_id'=> Player::query()->inRandomOrder()->first()->id,
             'map_name' => $this->faker->word,
-            'score' => $this->faker->biasedNumberBetween(0,1000),
-            'session_duration' => $this->faker->biasedNumberBetween(0,1800),
-            'is_record' => $this->faker->boolean,
+            'score' => $this->faker->numberBetween(0,1000),
+            'session_duration' => $this->faker->numberBetween(0,1800),
         ];
     }
 }
