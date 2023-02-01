@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DataSession;
 use App\Models\Session;
 use App\Models\User;
 use App\Http\Requests\Auth\Session\CreateRequest;
@@ -23,6 +24,7 @@ class SessionController extends Controller
         }
 
         $currentSession = $request->validated();
+        $dataSession = json_encode($currentSession['data']);
         $bestSession = Session::query()->filter(['player_id' => $player->id, 'map_name' => $currentSession['map_name'], 'is_record' => true])->first();
 
         if ($bestSession) {
@@ -40,6 +42,11 @@ class SessionController extends Controller
             'score' => $currentSession['score'],
             'session_duration' => $currentSession['session_duration'],
             'is_record' => $is_record,
+        ]);
+
+        DataSession::query()->create([
+            'session_id' => $session->id,
+            'data' => $dataSession,
         ]);
 
         return responder()->success(['id' => $session->id])->respond();

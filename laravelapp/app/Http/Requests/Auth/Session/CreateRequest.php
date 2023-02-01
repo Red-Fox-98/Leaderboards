@@ -17,6 +17,7 @@ class CreateRequest extends FormRequest
             'map_name' => 'required|string',
             'score' => 'required|int|min:0',
             'session_duration' => 'required|int|min:0',
+            'data'   => 'required|array|min:1',
         ];
     }
 }

@@ -31,4 +31,8 @@ class Session extends Model
     public function player(){
         return $this->belongsTo(Player::class);
     }
+
+    public function data(){
+        return $this->hasOne(DataSession::class);
+    }
 }

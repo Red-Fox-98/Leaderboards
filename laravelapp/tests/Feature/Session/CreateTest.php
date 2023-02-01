@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Session;
 
+use App\Models\DataSession;
 use App\Models\Player;
 use App\Models\Session;
 use App\Models\User;
@@ -32,6 +33,7 @@ class CreateTest extends TestCase
             'map_name' => $this->faker->word(),
             'score' => $this->faker->numberBetween(0, 1000),
             'session_duration' => $this->faker->numberBetween(0, 1800),
+            'data' => ['key_1' => $this->faker->name(),'key_2' => $this->faker->phoneNumber()],
         ];
 
         $this->actingAs($user)->json('post', route('api.session.create'), $data)
@@ -46,6 +48,10 @@ class CreateTest extends TestCase
             'map_name' => $data['map_name'],
             'score' => $data['score'],
             'session_duration' => $data['session_duration'],
+        ]);
+
+        $this->assertDatabaseHas('data_sessions', [
+            'session_id' => $player->session->id,
         ]);
     }
 }
