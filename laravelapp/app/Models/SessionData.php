@@ -4,13 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @property int $id
- * @property int $session_id
- */
-
-class DataSession extends Model
+class SessionData extends Model
 {
     use HasFactory;
     public $timestamps = false;
@@ -20,7 +16,8 @@ class DataSession extends Model
         'data',
     ];
 
-    public function session(){
+    public function session(): BelongsTo
+    {
         return $this->belongsTo(Session::class);
     }
 }

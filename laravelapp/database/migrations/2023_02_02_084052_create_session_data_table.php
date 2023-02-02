@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('data_sessions', function (Blueprint $table) {
+        Schema::create('session_data', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('session_id');
             $table->json('data');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_sessions');
+        Schema::dropIfExists('session_data');
     }
 };

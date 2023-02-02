@@ -50,7 +50,7 @@ class CreateTest extends TestCase
             'session_duration' => $data['session_duration'],
         ]);
 
-        $this->assertDatabaseHas('data_sessions', [
+        $this->assertDatabaseHas('session_data', [
             'session_id' => $player->session->id,
         ]);
     }

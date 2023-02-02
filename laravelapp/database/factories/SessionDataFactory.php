@@ -6,9 +6,9 @@ use App\Models\Session;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DataSession>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SessionData>
  */
-class DataSessionFactory extends Factory
+class SessionDataFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,11 +18,7 @@ class DataSessionFactory extends Factory
     public function definition()
     {
         /** @var Session $session */
-        $session = Session::query()->inRandomOrder()->first();
-
-        if (!$session){
-            $session = Session::factory()->create();
-        }
+        $session = Session::factory()->create();
 
         return [
             'session_id'=> $session->id,
