@@ -2,13 +2,16 @@
 
 namespace App\Data\DataObjects\Session;
 
+use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
 
 class IndexRequestData extends Data
 {
     public function __construct(
-        public string $map_name,
-        public bool $is_record,
+        #[MapInputName('map_name')]
+        public string $mapName,
+        #[MapInputName('$is_record')]
+        public bool $isRecord,
     ) {
     }
 }

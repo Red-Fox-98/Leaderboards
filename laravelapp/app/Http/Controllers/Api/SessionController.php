@@ -23,7 +23,7 @@ class SessionController extends Controller
         }
 
         $sessionData = json_encode($data->data);
-        $bestSession = Session::query()->filter(['player_id' => $player->id, 'map_name' => $data->map_name, 'is_record' => true])->first();
+        $bestSession = Session::query()->filter(['player_id' => $player->id, 'map_name' => $data->mapName, 'is_record' => true])->first();
 
         if ($bestSession) {
             if ($bestSession->score >= $data->score) {
@@ -36,9 +36,9 @@ class SessionController extends Controller
         /** @var Session $session */
         $session = Session::query()->create([
             'player_id' => $player->id,
-            'map_name' => $data->map_name,
+            'map_name' => $data->mapName,
             'score' => $data->score,
-            'session_duration' => $data->session_duration,
+            'session_duration' => $data->sessionDuration,
             'is_record' => $is_record,
         ]);
 
@@ -53,7 +53,7 @@ class SessionController extends Controller
     public function index(IndexRequestData $data)
     {
         $sessions = Session::query()
-            ->filter(['map_name' => $data->map_name, 'is_record' => $data->is_record])
+            ->filter($data->toArray())
             ->orderByDesc('score')
             ->paginate();
         return responder()->success($sessions, new SessionTransformer())->respond();
