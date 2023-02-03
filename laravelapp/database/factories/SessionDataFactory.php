@@ -17,11 +17,8 @@ class SessionDataFactory extends Factory
      */
     public function definition()
     {
-        /** @var Session $session */
-        $session = Session::factory()->create();
-
         return [
-            'session_id'=> $session->id,
+            'session_id'=> (Session::factory()->create())->id,
             'data' => json_encode(['key_1' => $this->faker->name(),'key_2' => $this->faker->phoneNumber()]),
         ];
     }

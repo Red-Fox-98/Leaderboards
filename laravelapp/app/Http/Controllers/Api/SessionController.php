@@ -44,7 +44,7 @@ class SessionController extends Controller
             'is_record' => $is_record,
         ]);
 
-        SessionData::query()->create([
+        $session->sessionData()->create([
             'session_id' => $session->id,
             'data' => $sessionData,
         ]);

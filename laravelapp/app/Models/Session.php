@@ -30,11 +30,13 @@ class Session extends Model
         'is_record'
     ];
 
-    public function player(): BelongsTo{
+    public function player(): BelongsTo
+    {
         return $this->belongsTo(Player::class);
     }
 
-    public function data(): HasOne{
+    public function sessionData(): HasOne
+    {
         return $this->hasOne(SessionData::class);
     }
 }
