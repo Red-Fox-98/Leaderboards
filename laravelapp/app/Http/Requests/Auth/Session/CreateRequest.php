@@ -2,16 +2,12 @@
 
 namespace App\Http\Requests\Auth\Session;
 
+use App\Data\DataObjects\Session\CreateRequestData;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequest extends FormRequest
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             'map_name' => 'required|string',
@@ -19,5 +15,10 @@ class CreateRequest extends FormRequest
             'session_duration' => 'required|int|min:0',
             'data'   => 'array|min:1|nullable',
         ];
+    }
+
+    public function getData(): CreateRequestData
+    {
+        return CreateRequestData::from($this->validated());
     }
 }

@@ -2,21 +2,21 @@
 
 namespace App\Http\Requests\Api\Session;
 
-use App\Models\Session;
+use App\Data\DataObjects\Session\IndexRequestData;
 use Illuminate\Foundation\Http\FormRequest;
 
 class IndexRequest extends FormRequest
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             'map_name' => 'nullable|string',
             'is_record' => ['boolean'],
         ];
+    }
+
+    public function getData(): IndexRequestData
+    {
+        return IndexRequestData::from($this->validated());
     }
 }

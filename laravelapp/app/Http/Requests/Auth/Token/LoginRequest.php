@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Auth\Token;
 
-use App\Data\DataObjects\Auth\LoginData;
+use App\Data\DataObjects\Auth\LoginRequestData;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -15,8 +15,8 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    public function getData(): LoginData
+    public function getData(): LoginRequestData
     {
-        return LoginData::from($this->validated());
+        return LoginRequestData::from($this->validated());
     }
 }

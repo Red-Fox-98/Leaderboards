@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Data\DataObjects\Auth\LoginData;
+use App\Data\DataObjects\Auth\LoginRequestData;
+use App\Data\DataObjects\Auth\RegisterRequestData;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\Token\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function register(RegisterRequest $request){
-        $data = $request->validated();
-
+    public function register(RegisterRequestData $data){
         /** @var User $user */
         $user = User::query()->create([
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'email' => $data->email,
+            'password' => bcrypt($data->password),
         ]);
 
         $token = $user->createToken('Authorisation token')->plainTextToken;
@@ -25,7 +23,7 @@ class AuthController extends Controller
         return responder()->success(['token' => $token])->respond();
     }
 
-    public function login(LoginData $data){
+    public function login(LoginRequestData $data){
         /** @var User $user */
         $user = User::query()->where('email', $data->email)->first();
 
