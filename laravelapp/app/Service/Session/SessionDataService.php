@@ -13,9 +13,11 @@ final class SessionDataService
 
     final public function create(int $sessionId, Array $data)
     {
-        SessionData::query()->create([
+        $sessionData = SessionData::query()->create([
             'session_id' => $sessionId,
             'data' => json_encode($data),
         ]);
+
+        return $sessionData;
     }
 }

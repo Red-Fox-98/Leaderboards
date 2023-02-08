@@ -24,6 +24,6 @@ final class PlayerService
             'nickname' => $data->nickname,
         ]);
 
-        return $player->id;
+        return $player;
     }
 }

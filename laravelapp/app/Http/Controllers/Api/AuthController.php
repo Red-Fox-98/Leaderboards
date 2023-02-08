@@ -10,14 +10,8 @@ use App\Service\Auth\RegisterService;
 
 class AuthController extends Controller
 {
-    /** @var LoginService */
-    private $loginService;
-    /** @var RegisterService */
-    private $registerService;
-    public function __construct()
+    public function __construct(private LoginService $loginService, private RegisterService $registerService)
     {
-        $this->loginService = app(LoginService::class);
-        $this->registerService = app(RegisterService::class);
     }
 
     public function register(RegisterRequest $request){

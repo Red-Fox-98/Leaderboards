@@ -15,8 +15,8 @@ class SessionController extends Controller
     }
     public function create(CreateRequest $request)
     {
-        $id = $this->sessionService->create($request->getData());
-        return responder()->success(['id' => $id])->respond();
+        $session = $this->sessionService->create($request->getData());
+        return responder()->success(['id' => $session->id])->respond();
     }
 
     public function index(IndexRequest $request)

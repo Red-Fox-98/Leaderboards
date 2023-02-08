@@ -13,7 +13,7 @@ class PlayerController extends Controller
     }
     public function create(CreateRequest $request)
     {
-        $id = $this->playerService->create($request->getData());
-        return responder()->success(['id' => $id])->respond();
+        $player = $this->playerService->create($request->getData());
+        return responder()->success(['id' => $player->id])->respond();
     }
 }

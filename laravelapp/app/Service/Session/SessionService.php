@@ -44,9 +44,9 @@ final class SessionService
             'is_record' => $is_record,
         ]);
 
-        $this->sessionDataService->create($session->id, $data->data);
+        $sessionData = $this->sessionDataService->create($session->id, $data->data);
 
-        return $session->id;
+        return $session;
     }
 
     final public function index(IndexRequestData $data)
