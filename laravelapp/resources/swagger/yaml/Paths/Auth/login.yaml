@@ -1,0 +1,14 @@
+paths:
+  /api/login:
+    post:
+      tags:
+        - "Authorization"
+      summary: "login into user account"
+      description: "Stores new access tokens in DB. returns stored access tokens and user data"
+      requestBody:
+        $ref: '#/components/requestBodies/LoginRequest'
+      responses:
+        200:
+          $ref: "#/components/responses/LoginResponse"
+        422:
+          $ref: '#/components/responses/InvalidInputResponse'

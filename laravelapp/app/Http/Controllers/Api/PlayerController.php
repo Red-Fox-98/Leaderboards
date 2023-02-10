@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Player\CreateRequest;
-use App\Service\Player\PlayerService;
+use App\Services\Player\PlayerService;
 
 class PlayerController extends Controller
 {

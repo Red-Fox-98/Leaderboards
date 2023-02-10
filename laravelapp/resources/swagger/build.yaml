@@ -1,0 +1,276 @@
+openapi: 3.0.0
+info:
+  title: Project title
+  description: Project description
+  version: 0.0.1
+tags:
+  - name: "example"
+    description: "example"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+    Pagination:
+      type: object
+      required:
+        - count
+        - total
+        - perPage
+        - currentPage
+        - totalPages
+        - links
+      properties:
+        count:
+          type: integer
+          description: "amount of items on current page"
+        total:
+          type: integer
+          description: "amount of items on all pages"
+        perPage:
+          type: integer
+          description: "items limit per page"
+        currentPage:
+          type: integer
+          description: "number of a currently displayed page"
+        totalPages:
+          type: integer
+          description: "amount of pages"
+        links:
+          type: object
+          description: "links for paginator such as 'next/previous/last/first' page"
+  parameters:
+    query:
+      in: query
+      name: query
+      description: search query
+      schema:
+        type: string
+    paginationPage:
+      in: query
+      name: page
+      description: a page to be displayed
+      schema:
+        type: integer
+    paginationPerPage:
+      in: query
+      name: perPage
+      description: amount of results per each page
+      schema:
+        type: integer
+  requestBodies:
+    LoginRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                description: "Can be sent instead of phone"
+                type: string
+                example: "mail@mail.mail"
+              password:
+                description: "min 6 symbols"
+                type: string
+                example: "password123"
+            required:
+              - email
+              - password
+    RegisterRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - email
+              - password
+              - passwordConfirmation
+            properties:
+              email:
+                description: "Can be sent instead of phone"
+                type: string
+                example: "mail@mail.mail"
+              password:
+                description: "min 6 symbols"
+                type: string
+                example: "password123"
+              passwordConfirmation:
+                description: "must be equals ot 'password'"
+                type: string
+                example: "password123"
+  responses:
+    LoginResponse:
+      description: "successful operation"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+    RegisterResponse:
+      description: "successful operation"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                $ref: '#/components/schemas/User'
+    EmptyResponse:
+      description: "returned primarily on delete requests"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+    InvalidInputResponse:
+      description: "contains validations error messages"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 422
+              success:
+                type: boolean
+                example: false
+              errors:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - validation
+                  properties:
+                    validation:
+                      type: object
+    ModelIdResponse:
+      description: "Entity was successfully created"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: integer
+    NotFoundResponse:
+      description: "Some of entities required to complete request wasn't found"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 404
+              success:
+                type: boolean
+                example: false
+              errors:
+                type: object
+    NoAccessResponse:
+      description: "User is not authorized or not enough permissions"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 401
+              success:
+                type: boolean
+                example: false
+              errors:
+                type: object
+security:
+  - bearerAuth: []
+paths:
+  /api/login:
+    post:
+      tags:
+        - "Authorization"
+      summary: "login into user account"
+      description: "Stores new access tokens in DB. returns stored access tokens and user data"
+      requestBody:
+        $ref: '#/components/requestBodies/LoginRequest'
+      responses:
+        "200":
+          $ref: "#/components/responses/LoginResponse"
+        "422":
+          $ref: '#/components/responses/InvalidInputResponse'
+  /api/register:
+    post:
+      tags:
+        - "Authorization"
+      summary: "register into user account"
+      description: "Stores new access tokens in DB. returns stored access tokens and user data"
+      requestBody:
+        $ref: '#/components/requestBodies/RegisterRequest'
+      responses:
+        "200":
+          $ref: "#/components/responses/RegisterResponse"
+        "422":
+          $ref: '#/components/responses/InvalidInputResponse'

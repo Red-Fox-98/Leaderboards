@@ -1,0 +1,54 @@
+components:
+  schemas:
+    Pagination:
+      type: object
+      required:
+        - count
+        - total
+        - perPage
+        - currentPage
+        - totalPages
+        - links
+      properties:
+        count:
+          type: integer
+          description: "amount of items on current page"
+        total:
+          type: integer
+          description: "amount of items on all pages"
+        perPage:
+          type: integer
+          description: "items limit per page"
+        currentPage:
+          type: integer
+          description: "number of a currently displayed page"
+        totalPages:
+          type: integer
+          description: "amount of pages"
+        links:
+          type: object
+          description: "links for paginator such as 'next/previous/last/first' page"
+
+
+
+  parameters:
+    query:
+      in: query
+      name: query
+      description: search query
+      schema:
+        type: string
+
+    paginationPage:
+      in: query
+      name: page
+      description: a page to be displayed
+      schema:
+        type: integer
+    paginationPerPage:
+      in: query
+      name: perPage
+      description: amount of results per each page
+      schema:
+        type: integer
+

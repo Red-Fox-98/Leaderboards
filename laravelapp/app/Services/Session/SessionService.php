@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Session;
+namespace App\Services\Session;
 
 
 use App\Data\DataObjects\Session\CreateRequestData;

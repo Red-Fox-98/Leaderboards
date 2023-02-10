@@ -1,0 +1,19 @@
+components:
+  requestBodies:
+    LoginRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                description: "Can be sent instead of phone"
+                type: string
+                example: "mail@mail.mail"
+              password:
+                description: "min 6 symbols"
+                type: string
+                example: "password123"
+            required:
+              - email
+              - password

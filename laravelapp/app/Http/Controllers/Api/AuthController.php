@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Token\LoginRequest;
 use App\Http\Requests\Auth\Token\RegisterRequest;
-use App\Service\Auth\LoginService;
-use App\Service\Auth\RegisterService;
+use App\Services\Auth\LoginService;
+use App\Services\Auth\RegisterService;
 
 class AuthController extends Controller
 {
