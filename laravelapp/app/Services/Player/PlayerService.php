@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Player;
+namespace App\Services\Player;
 
 use App\Data\DataObjects\Player\CreateRequestData;
 use App\Models\Player;

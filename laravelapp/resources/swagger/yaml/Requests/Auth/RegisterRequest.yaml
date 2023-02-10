@@ -1,0 +1,24 @@
+components:
+  requestBodies:
+    RegisterRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - email
+              - password
+              - passwordConfirmation
+            properties:
+              email:
+                description: "Can be sent instead of phone"
+                type: string
+                example: "mail@mail.mail"
+              password:
+                description: "min 6 symbols"
+                type: string
+                example: "password123"
+              passwordConfirmation:
+                description: "must be equals ot 'password'"
+                type: string
+                example: "password123"
