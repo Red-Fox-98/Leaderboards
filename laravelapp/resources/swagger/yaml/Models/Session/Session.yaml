@@ -1,0 +1,24 @@
+components:
+  schemas:
+    Session:
+      type: object
+      required:
+        - map_name
+        - score
+        - session_duration
+      properties:
+        id:
+          type: integer
+        player_id:
+          type: integer
+          description: 'player session id'
+        map_name:
+          type: string
+        score:
+          type: integer
+        session_duration:
+          type: integer
+        is_record:
+          type: boolean
+        session_data:
+          $ref: '#/components/schemas/SessionData'

@@ -1,0 +1,14 @@
+components:
+  requestBodies:
+    IndexSessionRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              map_name:
+                type: string
+                example: Condor
+              is_record:
+                type: boolean
+                example: true

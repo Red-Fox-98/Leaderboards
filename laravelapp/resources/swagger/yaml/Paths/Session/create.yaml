@@ -1,0 +1,14 @@
+paths:
+  /api/session/create:
+    post:
+      tags:
+        - "Session"
+      summary: "adding session entry"
+      description: "Saves the sessions in DB. Returns the session id"
+      requestBody:
+        $ref: '#/components/requestBodies/CreateSessionRequest'
+      responses:
+        200:
+          $ref: '#/components/responses/CreateSessionResponse'
+        422:
+          $ref: '#/components/responses/InvalidInputResponse'

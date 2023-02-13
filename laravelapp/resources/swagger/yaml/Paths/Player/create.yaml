@@ -1,0 +1,14 @@
+paths:
+  /api/player/create:
+    post:
+      tags:
+        - "Player"
+      summary: "adding player entry"
+      description: "Saves the player's nickname in DB. Returns the player id"
+      requestBody:
+        $ref: '#/components/requestBodies/CreatePlayerRequest'
+      responses:
+        200:
+          $ref: '#/components/responses/CreatePlayerResponse'
+        422:
+          $ref: '#/components/responses/InvalidInputResponse'
