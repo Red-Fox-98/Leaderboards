@@ -1,5 +1,5 @@
 paths:
-  /api/session/create:
+  /api/sessions:
     post:
       tags:
         - "Session"

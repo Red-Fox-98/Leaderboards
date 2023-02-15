@@ -3,9 +3,12 @@ components:
     Session:
       type: object
       required:
+        - id
+        - player_id
         - map_name
         - score
         - session_duration
+        - is_record
       properties:
         id:
           type: integer

@@ -3,6 +3,8 @@ components:
     Player:
       type: object
       required:
+        - id
+        - user_id
         - nickname
       properties:
         id:
@@ -12,5 +14,3 @@ components:
           description: 'player owner id'
         nickname:
           type: string
-        session:
-          $ref: "#/components/schemas/Session"

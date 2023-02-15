@@ -16,6 +16,8 @@ components:
     Player:
       type: object
       required:
+        - id
+        - user_id
         - nickname
       properties:
         id:
@@ -25,10 +27,11 @@ components:
           description: 'player owner id'
         nickname:
           type: string
-        session:
-          $ref: "#/components/schemas/Session"
     SessionData:
       type: object
+      required:
+        - id
+        - session_id
       properties:
         id:
           type: integer
@@ -42,9 +45,12 @@ components:
     Session:
       type: object
       required:
+        - id
+        - player_id
         - map_name
         - score
         - session_duration
+        - is_record
       properties:
         id:
           type: integer
@@ -419,7 +425,7 @@ components:
 security:
   - bearerAuth: []
 paths:
-  /api/login:
+  /api/auth/login:
     post:
       tags:
         - "Authorization"
@@ -432,7 +438,7 @@ paths:
           $ref: "#/components/responses/LoginResponse"
         "422":
           $ref: '#/components/responses/InvalidInputResponse'
-  /api/register:
+  /api/auth/register:
     post:
       tags:
         - "Authorization"
@@ -445,7 +451,7 @@ paths:
           $ref: "#/components/responses/RegisterResponse"
         "422":
           $ref: '#/components/responses/InvalidInputResponse'
-  /api/player/create:
+  /api/players:
     post:
       tags:
         - "Player"
@@ -458,7 +464,7 @@ paths:
           $ref: '#/components/responses/CreatePlayerResponse'
         "422":
           $ref: '#/components/responses/InvalidInputResponse'
-  /api/session/create:
+  /api/sessions:
     post:
       tags:
         - "Session"
@@ -471,7 +477,6 @@ paths:
           $ref: '#/components/responses/CreateSessionResponse'
         "422":
           $ref: '#/components/responses/InvalidInputResponse'
-  /api/sessions:
     get:
       tags:
         - "Session"
