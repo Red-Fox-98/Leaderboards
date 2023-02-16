@@ -18,4 +18,6 @@ components:
                 type: boolean
                 example: true
               data:
-                $ref: '#/components/schemas/Session'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'

@@ -26,9 +26,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['namespace' => 'App\Http\Controllers\Users', 'prefix' => 'list'], function () {
     Route::resource('users', 'App\Http\Controllers\Users\UserController')->names('list.users');
 });
-
-Route::group(['middleware' => ['role:admin'], 'namespace' => 'App\Http\Controllers\Web\Admin', 'prefix' => 'admin'], function () {
-    Route::resource('profile', ProfileController::class)
-        ->only('index', 'edit', 'update', 'destroy')
-        ->names('admin.profile');
-});

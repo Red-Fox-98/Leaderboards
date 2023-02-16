@@ -3,8 +3,6 @@
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\FileController;
-use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\PlayerController;
 use App\Http\Controllers\Api\SessionController;
 
@@ -32,18 +30,6 @@ Route::group(['prefix' => 'players', 'middleware' => 'auth:sanctum'], function (
 });
 
 Route::group(['prefix' => 'sessions', 'middleware' => 'auth:sanctum'], function () {
-    Route::post('/', [SessionController::class, 'create'])->name('api.session.create');
+    Route::apiResource('/', SessionController::class)->only('create');
     Route::apiResource('/', SessionController::class)->only('index');
 });
-
-
-
-
-//Route::group(['middleware' => 'auth:sanctum'], function () {
-//    Route::get('/tokenVerification', function () {
-//        return 'ok';
-//    });
-//    Route::apiResource('/profile', ProfileController::class)
-//        ->only('create');
-//    Route::post('/file/upload', [FileController::class, 'upload']);
-//});

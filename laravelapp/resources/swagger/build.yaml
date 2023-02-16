@@ -244,7 +244,9 @@ components:
                 type: boolean
                 example: true
               data:
-                $ref: '#/components/schemas/User'
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
     RegisterResponse:
       description: "successful operation"
       content:
@@ -263,7 +265,9 @@ components:
                 type: boolean
                 example: true
               data:
-                $ref: '#/components/schemas/User'
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
     CreatePlayerResponse:
       description: "successful operation"
       content:
@@ -282,7 +286,9 @@ components:
                 type: boolean
                 example: true
               data:
-                $ref: '#/components/schemas/Player'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
     CreateSessionResponse:
       description: "successful operation"
       content:
@@ -301,7 +307,9 @@ components:
                 type: boolean
                 example: true
               data:
-                $ref: '#/components/schemas/Session'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
     IndexSessionResponse:
       description: "successful operation"
       content:
@@ -320,7 +328,11 @@ components:
                 type: boolean
                 example: true
               data:
-                $ref: '#/components/schemas/Session'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+              pagination:
+                $ref: "#/components/schemas/Pagination"
     EmptyResponse:
       description: "returned primarily on delete requests"
       content:
