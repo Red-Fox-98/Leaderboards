@@ -197,7 +197,6 @@ components:
               - map_name
               - score
               - session_duration
-              - data
             properties:
               map_name:
                 type: string

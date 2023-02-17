@@ -21,15 +21,16 @@ Route::apiResource('/users', UserController::class)
     ->only('index');
 
 Route::group(['prefix' => 'auth'], function (){
-    Route::post('/login', [AuthController::class, 'login'])->name('api.auth.login');
     Route::post('/register', [AuthController::class, 'register'])->name('api.auth.register');
+    Route::post('/login', [AuthController::class, 'login'])->name('api.auth.login');
 });
 
-Route::group(['prefix' => 'players', 'middleware' => 'auth:sanctum'], function () {
-    Route::post('/', [PlayerController::class, 'create'])->name('api.player.create');
+Route::group(['prefix' => 'players', 'as' => 'players.', 'middleware' => 'auth:sanctum'], function () {
+    Route::post('/', [PlayerController::class, 'create'])->name('create');
 });
 
-Route::group(['prefix' => 'sessions', 'middleware' => 'auth:sanctum'], function () {
-    Route::apiResource('/', SessionController::class)->only('create');
-    Route::apiResource('/', SessionController::class)->only('index');
+Route::group(['prefix' => 'sessions', 'as' => 'sessions.', 'middleware' => 'auth:sanctum'], function () {
+    Route::post('/', [SessionController::class, 'create'])->name('create');
 });
+
+Route::apiResource('/sessions', SessionController::class)->only('index');

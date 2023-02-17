@@ -2,11 +2,8 @@
 
 namespace Tests\Feature\Session;
 
-use App\Models\DataSession;
 use App\Models\Player;
-use App\Models\Session;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
@@ -36,7 +33,7 @@ class CreateTest extends TestCase
             'data' => ['key_1' => $this->faker->name(),'key_2' => $this->faker->phoneNumber()],
         ];
 
-        $this->actingAs($user)->json('post', route('api.session.create'), $data)
+        $this->actingAs($user)->json('post', route('sessions.create'), $data)
             ->assertOk()
             ->assertJsonStructure([
                 'status', 'success',
