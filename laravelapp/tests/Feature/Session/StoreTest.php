@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CreateTest extends TestCase
+class StoreTest extends TestCase
 {
     use WithFaker;
 
@@ -33,7 +33,7 @@ class CreateTest extends TestCase
             'data' => ['key_1' => $this->faker->name(),'key_2' => $this->faker->phoneNumber()],
         ];
 
-        $this->actingAs($user)->json('post', route('sessions.create'), $data)
+        $this->actingAs($user)->json('post', route('sessions.store'), $data)
             ->assertOk()
             ->assertJsonStructure([
                 'status', 'success',

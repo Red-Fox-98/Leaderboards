@@ -26,11 +26,11 @@ Route::group(['prefix' => 'auth'], function (){
 });
 
 Route::group(['prefix' => 'players', 'as' => 'players.', 'middleware' => 'auth:sanctum'], function () {
-    Route::post('/', [PlayerController::class, 'create'])->name('create');
+    Route::apiResource('/', PlayerController::class)->only('create');
 });
 
 Route::group(['prefix' => 'sessions', 'as' => 'sessions.', 'middleware' => 'auth:sanctum'], function () {
-    Route::post('/', [SessionController::class, 'create'])->name('create');
+    Route::apiResource('/', SessionController::class)->only('store');
 });
 
 Route::apiResource('/sessions', SessionController::class)->only('index');

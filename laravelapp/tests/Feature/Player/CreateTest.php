@@ -23,7 +23,7 @@ class CreateTest extends TestCase
             'nickname' => $this->faker->unique()->word,
         ];
 
-        $this->actingAs($user)->json('post', route('players.create'), $data)
+        $this->actingAs($user)->json('get', route('players.create'), $data)
         ->assertOk()
         ->assertJsonStructure([
             'status', 'success',
