@@ -13,7 +13,7 @@ class SessionController extends Controller
     public function __construct(private SessionService $sessionService)
     {
     }
-    public function create(CreateRequest $request)
+    public function store(CreateRequest $request)
     {
         $session = $this->sessionService->create($request->getData());
         return responder()->success(['id' => $session->id])->respond();

@@ -7,3 +7,5 @@ components:
           type: integer
         email:
           type: string
+        player:
+          $ref: "#/components/schemas/Player"

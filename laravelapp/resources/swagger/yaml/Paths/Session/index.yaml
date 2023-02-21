@@ -1,0 +1,15 @@
+paths:
+  /api/sessions:
+    get:
+      tags:
+        - "Session"
+      summary: "score table output"
+      description: "Saves the sessions in DB. Returns the session id"
+      parameters:
+        - $ref: "#/components/SessionFilteringOptions/parameters/map_name"
+        - $ref: "#/components/SessionFilteringOptions/parameters/is_record"
+      responses:
+        200:
+          $ref: '#/components/responses/IndexSessionResponse'
+        422:
+          $ref: '#/components/responses/InvalidInputResponse'

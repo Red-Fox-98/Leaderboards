@@ -1,0 +1,16 @@
+components:
+  schemas:
+    Player:
+      type: object
+      required:
+        - id
+        - user_id
+        - nickname
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+          description: 'player owner id'
+        nickname:
+          type: string

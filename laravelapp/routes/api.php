@@ -3,8 +3,6 @@
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\FileController;
-use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\PlayerController;
 use App\Http\Controllers\Api\SessionController;
 
@@ -22,23 +20,17 @@ use App\Http\Controllers\Api\SessionController;
 Route::apiResource('/users', UserController::class)
     ->only('index');
 
-Route::post('/login', [AuthController::class, 'login'])->name('api.auth.login');
+Route::group(['prefix' => 'auth'], function (){
+    Route::post('/register', [AuthController::class, 'register'])->name('api.auth.register');
+    Route::post('/login', [AuthController::class, 'login'])->name('api.auth.login');
+});
 
-Route::post('/register', [AuthController::class, 'register'])->name('api.auth.register');
+Route::group(['prefix' => 'players', 'as' => 'players.', 'middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('/', PlayerController::class)->only('create');
+});
+
+Route::group(['prefix' => 'sessions', 'as' => 'sessions.', 'middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('/', SessionController::class)->only('store');
+});
 
 Route::apiResource('/sessions', SessionController::class)->only('index');
-
-Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::post('/player/create', [PlayerController::class, 'create'])->name('api.player.create');
-
-    Route::post('/session/create', [SessionController::class, 'create'])->name('api.session.create');
-
-    Route::get('/tokenVerification', function () {
-        return 'ok';
-    });
-
-    Route::apiResource('/profile', ProfileController::class)
-        ->only('create');
-
-    Route::post('/file/upload', [FileController::class, 'upload']);
-});

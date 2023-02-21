@@ -1,0 +1,15 @@
+components:
+  SessionFilteringOptions:
+    parameters:
+      map_name:
+        in: query
+        description: filter by map name
+        name: filtering[map_name]
+        schema:
+          type: string
+      is_record:
+        in: query
+        description: filter by record
+        name: filtering[is_record]
+        schema:
+          type: boolean

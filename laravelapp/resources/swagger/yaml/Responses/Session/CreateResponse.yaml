@@ -1,6 +1,6 @@
 components:
   responses:
-    LoginResponse:
+    CreateSessionResponse:
       description: "successful operation"
       content:
         application/json:
@@ -17,3 +17,7 @@ components:
               success:
                 type: boolean
                 example: true
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'

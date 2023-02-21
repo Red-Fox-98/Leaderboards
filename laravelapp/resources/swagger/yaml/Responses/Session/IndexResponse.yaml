@@ -1,0 +1,25 @@
+components:
+  responses:
+    IndexSessionResponse:
+      description: "successful operation"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+              pagination:
+                $ref: "#/components/schemas/Pagination"

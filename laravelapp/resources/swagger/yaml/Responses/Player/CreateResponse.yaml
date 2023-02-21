@@ -1,6 +1,6 @@
 components:
   responses:
-    RegisterResponse:
+    CreatePlayerResponse:
       description: "successful operation"
       content:
         application/json:
@@ -18,4 +18,6 @@ components:
                 type: boolean
                 example: true
               data:
-                $ref: '#/components/schemas/User'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
