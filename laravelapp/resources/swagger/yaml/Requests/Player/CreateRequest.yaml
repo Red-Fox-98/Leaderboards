@@ -1,0 +1,13 @@
+components:
+  requestBodies:
+    CreatePlayerRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - nickname
+            properties:
+              nickname:
+                type: string
+                example: "player_3478"

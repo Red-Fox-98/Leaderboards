@@ -1,0 +1,503 @@
+openapi: 3.0.0
+info:
+  title: Project title
+  description: Project description
+  version: 0.0.1
+tags:
+  - name: "example"
+    description: "example"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Player:
+      type: object
+      required:
+        - id
+        - user_id
+        - nickname
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+          description: 'player owner id'
+        nickname:
+          type: string
+    SessionData:
+      type: object
+      required:
+        - id
+        - session_id
+      properties:
+        id:
+          type: integer
+        session_id:
+          type: integer
+          description: 'session data id'
+        data:
+          type: array
+          items:
+            type: string
+    Session:
+      type: object
+      required:
+        - id
+        - player_id
+        - map_name
+        - score
+        - session_duration
+        - is_record
+      properties:
+        id:
+          type: integer
+        player_id:
+          type: integer
+          description: 'player session id'
+        map_name:
+          type: string
+        score:
+          type: integer
+        session_duration:
+          type: integer
+        is_record:
+          type: boolean
+        session_data:
+          $ref: '#/components/schemas/SessionData'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        player:
+          $ref: "#/components/schemas/Player"
+    Pagination:
+      type: object
+      required:
+        - count
+        - total
+        - perPage
+        - currentPage
+        - totalPages
+        - links
+      properties:
+        count:
+          type: integer
+          description: "amount of items on current page"
+        total:
+          type: integer
+          description: "amount of items on all pages"
+        perPage:
+          type: integer
+          description: "items limit per page"
+        currentPage:
+          type: integer
+          description: "number of a currently displayed page"
+        totalPages:
+          type: integer
+          description: "amount of pages"
+        links:
+          type: object
+          description: "links for paginator such as 'next/previous/last/first' page"
+  SessionFilteringOptions:
+    parameters:
+      map_name:
+        in: query
+        description: filter by map name
+        name: filtering[map_name]
+        schema:
+          type: string
+      is_record:
+        in: query
+        description: filter by record
+        name: filtering[is_record]
+        schema:
+          type: boolean
+  parameters:
+    query:
+      in: query
+      name: query
+      description: search query
+      schema:
+        type: string
+    paginationPage:
+      in: query
+      name: page
+      description: a page to be displayed
+      schema:
+        type: integer
+    paginationPerPage:
+      in: query
+      name: perPage
+      description: amount of results per each page
+      schema:
+        type: integer
+  requestBodies:
+    LoginRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                description: "Can be sent instead of phone"
+                type: string
+                example: "mail@mail.mail"
+              password:
+                description: "min 6 symbols"
+                type: string
+                example: "password123"
+            required:
+              - email
+              - password
+    RegisterRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - email
+              - password
+              - passwordConfirmation
+            properties:
+              email:
+                description: "Can be sent instead of phone"
+                type: string
+                example: "mail@mail.mail"
+              password:
+                description: "min 6 symbols"
+                type: string
+                example: "password123"
+              passwordConfirmation:
+                description: "must be equals ot 'password'"
+                type: string
+                example: "password123"
+    CreatePlayerRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - nickname
+            properties:
+              nickname:
+                type: string
+                example: "player_3478"
+    CreateSessionRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - map_name
+              - score
+              - session_duration
+            properties:
+              map_name:
+                type: string
+                example: Condor
+              score:
+                type: integer
+                example: 999
+              session_duration:
+                type: integer
+                example: 60
+              is_record:
+                type: boolean
+                example: true
+              data:
+                example: [{key_1: "Joe", key_2: "1234567890"}]
+    IndexSessionRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              map_name:
+                type: string
+                example: Condor
+              is_record:
+                type: boolean
+                example: true
+  responses:
+    LoginResponse:
+      description: "successful operation"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    RegisterResponse:
+      description: "successful operation"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    CreatePlayerResponse:
+      description: "successful operation"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+    CreateSessionResponse:
+      description: "successful operation"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+    IndexSessionResponse:
+      description: "successful operation"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+              pagination:
+                $ref: "#/components/schemas/Pagination"
+    EmptyResponse:
+      description: "returned primarily on delete requests"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+    InvalidInputResponse:
+      description: "contains validations error messages"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 422
+              success:
+                type: boolean
+                example: false
+              errors:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - validation
+                  properties:
+                    validation:
+                      type: object
+    ModelIdResponse:
+      description: "Entity was successfully created"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: integer
+    NotFoundResponse:
+      description: "Some of entities required to complete request wasn't found"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 404
+              success:
+                type: boolean
+                example: false
+              errors:
+                type: object
+    NoAccessResponse:
+      description: "User is not authorized or not enough permissions"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 401
+              success:
+                type: boolean
+                example: false
+              errors:
+                type: object
+security:
+  - bearerAuth: []
+paths:
+  /api/auth/login:
+    post:
+      tags:
+        - "Authorization"
+      summary: "login into user account"
+      description: "Stores new access tokens in DB. returns stored access tokens and user data"
+      requestBody:
+        $ref: '#/components/requestBodies/LoginRequest'
+      responses:
+        "200":
+          $ref: "#/components/responses/LoginResponse"
+        "422":
+          $ref: '#/components/responses/InvalidInputResponse'
+  /api/auth/register:
+    post:
+      tags:
+        - "Authorization"
+      summary: "register into user account"
+      description: "Stores new access tokens in DB. returns stored access tokens and user data"
+      requestBody:
+        $ref: '#/components/requestBodies/RegisterRequest'
+      responses:
+        "200":
+          $ref: "#/components/responses/RegisterResponse"
+        "422":
+          $ref: '#/components/responses/InvalidInputResponse'
+  /api/players:
+    post:
+      tags:
+        - "Player"
+      summary: "adding player entry"
+      description: "Saves the player's nickname in DB. Returns the player id"
+      requestBody:
+        $ref: '#/components/requestBodies/CreatePlayerRequest'
+      responses:
+        "200":
+          $ref: '#/components/responses/CreatePlayerResponse'
+        "422":
+          $ref: '#/components/responses/InvalidInputResponse'
+  /api/sessions:
+    post:
+      tags:
+        - "Session"
+      summary: "adding session entry"
+      description: "Saves the sessions in DB. Returns the session id"
+      requestBody:
+        $ref: '#/components/requestBodies/CreateSessionRequest'
+      responses:
+        "200":
+          $ref: '#/components/responses/CreateSessionResponse'
+        "422":
+          $ref: '#/components/responses/InvalidInputResponse'
+    get:
+      tags:
+        - "Session"
+      summary: "score table output"
+      description: "Saves the sessions in DB. Returns the session id"
+      parameters:
+        - $ref: "#/components/SessionFilteringOptions/parameters/map_name"
+        - $ref: "#/components/SessionFilteringOptions/parameters/is_record"
+      responses:
+        "200":
+          $ref: '#/components/responses/IndexSessionResponse'
+        "422":
+          $ref: '#/components/responses/InvalidInputResponse'

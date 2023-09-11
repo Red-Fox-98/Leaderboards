@@ -1,0 +1,111 @@
+components:
+  responses:
+
+    EmptyResponse:
+      description: "returned primarily on delete requests"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+
+    InvalidInputResponse:
+      description: "contains validations error messages"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 422
+              success:
+                type: boolean
+                example: false
+              errors:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - validation
+                  properties:
+                    validation:
+                      type: object
+
+
+    ModelIdResponse:
+      description: "Entity was successfully created"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              success:
+                type: boolean
+                example: true
+              data:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: integer
+
+
+
+    NotFoundResponse:
+      description: "Some of entities required to complete request wasn't found"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 404
+              success:
+                type: boolean
+                example: false
+              errors:
+                type: object
+
+    NoAccessResponse:
+      description: "User is not authorized or not enough permissions"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - success
+            properties:
+              status:
+                type: integer
+                example: 401
+              success:
+                type: boolean
+                example: false
+              errors:
+                type: object

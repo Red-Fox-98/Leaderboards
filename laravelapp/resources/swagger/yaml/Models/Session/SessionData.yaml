@@ -1,0 +1,17 @@
+components:
+  schemas:
+    SessionData:
+      type: object
+      required:
+        - id
+        - session_id
+      properties:
+        id:
+          type: integer
+        session_id:
+          type: integer
+          description: 'session data id'
+        data:
+          type: array
+          items:
+            type: string
