@@ -10,8 +10,8 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'map_name' => 'nullable|string',
-            'is_record' => ['boolean'],
+            'map_name' => [ 'nullable', 'string' ],
+            'is_record' => [ 'boolean' ],
         ];
     }
 

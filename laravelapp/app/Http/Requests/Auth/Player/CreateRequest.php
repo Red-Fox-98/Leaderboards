@@ -10,7 +10,7 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nickname' => 'required|unique:players,nickname|string|max:255',
+            'nickname' => ['required', 'unique:players', 'nickname', 'string', 'max:255' ],
         ];
     }
 

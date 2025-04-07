@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Session\CreateRequest;
 use App\Http\Requests\Api\Session\IndexRequest;
-use App\Http\Requests\Auth\Session\CreateRequest;
 use App\Services\Session\SessionService;
 use App\Transformers\SessionTransformer;
 

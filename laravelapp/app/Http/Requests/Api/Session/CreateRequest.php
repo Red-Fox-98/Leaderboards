@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Auth\Session;
+namespace App\Http\Requests\Api\Session;
 
 use App\Data\DataObjects\Session\CreateRequestData;
 use Illuminate\Foundation\Http\FormRequest;
@@ -10,10 +10,10 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'map_name' => 'required|string',
-            'score' => 'required|int|min:0',
-            'session_duration' => 'required|int|min:0',
-            'data'   => 'array|min:1|nullable',
+            'map_name' => [ 'required', 'string' ],
+            'score' => [ 'required', 'int', 'min:0' ],
+            'session_duration' => [ 'int', 'min:0' ],
+            'data'   => [ 'array', 'min:1', 'nullable' ],
         ];
     }
 
