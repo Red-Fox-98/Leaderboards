@@ -18,7 +18,7 @@ class PlayerFactory extends Factory
     public function definition()
     {
         return [
-            'nickname' => $this->faker->unique()->word,
+            'nickname' => $this->faker->unique()->userName(),
             'user_id' => User::factory(),
         ];
     }

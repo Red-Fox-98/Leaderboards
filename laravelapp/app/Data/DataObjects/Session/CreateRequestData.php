@@ -12,8 +12,8 @@ class CreateRequestData extends Data
     public function __construct(
         public string $mapName,
         public int $score,
-        public int $sessionDuration,
-        public array $data,
+        public ?int $sessionDuration,
+        public ?array $data,
     ) {
     }
 }

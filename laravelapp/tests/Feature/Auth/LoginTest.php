@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\Player;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -21,7 +22,13 @@ class LoginTest extends TestCase
             'password' => bcrypt($password),
             ]);
 
+        $player = Player::factory()->create([
+           'user_id' => $user->id,
+           'nickname' => $this->faker->unique()->userName(),
+        ]);
+
         $data = [
+            'nickname' => $player->nickname,
             'email' => $user->email,
             'password' => $password,
         ];

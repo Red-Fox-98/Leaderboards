@@ -5,8 +5,6 @@ namespace Database\Seeders;
 use App\Models\Player;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Faker\Generator;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -35,6 +33,5 @@ class UserSeeder extends Seeder
 
         Player::factory()->create(['user_id' => $player->id]);
         $player->assignRole(Role::PLAYER);
-
     }
 }

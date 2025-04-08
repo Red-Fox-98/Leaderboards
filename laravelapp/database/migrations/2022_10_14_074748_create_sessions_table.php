@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('player_id');
             $table->string('map_name');
             $table->unsignedBigInteger('score');
-            $table->unsignedBigInteger('session_duration');
+            $table->unsignedBigInteger('session_duration')->nullable();
             $table->boolean('is_record')->default(false);
             $table->timestamps();
 

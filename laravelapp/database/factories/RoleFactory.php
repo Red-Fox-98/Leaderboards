@@ -15,7 +15,7 @@ class RoleFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'guard_name' => 'web',
+            'guard_name' => 'api',
         ];
     }
 }

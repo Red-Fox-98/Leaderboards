@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['namespace' => 'App\Http\Controllers\Users', 'prefix' => 'list'], function () {
-    Route::resource('users', 'App\Http\Controllers\Users\UserController')->names('list.users');
-});
+Route::get('/home', [HomeController::class, 'index'])->name('home');

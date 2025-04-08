@@ -17,16 +17,8 @@ use App\Http\Controllers\Api\SessionController;
 |
 */
 
-Route::apiResource('/users', UserController::class)
-    ->only('index');
-
 Route::group(['prefix' => 'auth'], function (){
-    Route::post('/register', [AuthController::class, 'register'])->name('api.auth.register');
     Route::post('/login', [AuthController::class, 'login'])->name('api.auth.login');
-});
-
-Route::group(['prefix' => 'players', 'as' => 'players.', 'middleware' => 'auth:sanctum'], function () {
-    Route::apiResource('/', PlayerController::class)->only('create');
 });
 
 Route::group(['prefix' => 'sessions', 'as' => 'sessions.', 'middleware' => 'auth:sanctum'], function () {

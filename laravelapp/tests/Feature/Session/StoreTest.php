@@ -16,14 +16,14 @@ class StoreTest extends TestCase
         $password = 'password';
         /** @var User $user */
         $user = User::factory()->create([
-            'email' => $this->faker->unique()->email,
+            'email' => $this->faker->unique()->email(),
             'password' => bcrypt($password),
         ]);
 
         /** @var Player $player */
         $player = Player::factory()->create([
             'user_id' => $user->id,
-            'nickname' => $this->faker->unique()->word,
+            'nickname' => $this->faker->unique()->userName(),
         ]);
 
         $data = [
