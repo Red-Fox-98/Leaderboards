@@ -11,7 +11,7 @@ class IndexRequest extends FormRequest
     {
         return [
             'map_name' => [ 'nullable', 'string' ],
-            'is_record' => [ 'boolean' ],
+            'is_record' => [ 'nullable', 'boolean' ],
         ];
     }
 

@@ -10,8 +10,8 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 class IndexRequestData extends Data
 {
     public function __construct(
-        public string $mapName,
-        public bool $isRecord,
+        public ?string $mapName,
+        public ?bool $isRecord,
     ) {
     }
 }
