@@ -10,7 +10,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nickname' => [ 'required', 'string' ],
+            'nickname' => [ 'required', 'string' , 'unique:players,nickname'],
             'email' => [ 'required', 'email' ],
             'password' => [ 'required' ],
         ];
