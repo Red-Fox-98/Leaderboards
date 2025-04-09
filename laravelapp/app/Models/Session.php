@@ -21,6 +21,8 @@ class Session extends Model
 {
     use HasFactory, Filterable;
 
+    protected $perPage = 100;
+
     protected $fillable = [
         'id',
         'player_id',
