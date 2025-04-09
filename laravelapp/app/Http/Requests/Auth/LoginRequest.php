@@ -12,20 +12,21 @@ class LoginRequest extends FormRequest
 {
     public function rules(): array
     {
+        $rules = [
+            'email' => [ 'required', 'email' ],
+            'password' => [ 'required' ]
+        ];
+
         try {
             $email = $this->input('email');
             /** @var User $user */
             $user = User::query()->where('email', $email)->firstOrFail();
-            $playerId = $user->player->id;
+            $rules['nickname'] = [ 'required', 'string' , 'unique:players,nickname,'. $user->player->id];
         } catch (ModelNotFoundException $e) {
-            $playerId = null;
+            $rules['nickname'] = [ 'required', 'string' , 'unique:players,nickname'];
         }
 
-        return [
-            'nickname' => [ 'required', 'string' , 'unique:players,nickname,'.$playerId],
-            'email' => [ 'required', 'email' ],
-            'password' => [ 'required' ],
-        ];
+        return $rules;
     }
 
     public function getData(): LoginRequestData
