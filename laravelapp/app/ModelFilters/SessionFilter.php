@@ -2,7 +2,6 @@
 
 namespace App\ModelFilters;
 
-use App\Models\Session;
 use EloquentFilter\ModelFilter;
 
 class SessionFilter extends ModelFilter

@@ -25,7 +25,8 @@ final class SessionService
             return responder()->error('401', 'Unauthorized')->respond(401);
         }
 
-        $bestSession = Session::query()->filter(['player_id' => $player->id, 'map_name' => $data->mapName, 'is_record' => true])->first();
+        /** @var Session $bestSession */
+        $bestSession = Session::query()->where(['player_id' => $player->id, 'map_name' => $data->mapName, 'is_record' => true])->first();
 
         if ($bestSession) {
             if ($bestSession->score >= $data->score) {
